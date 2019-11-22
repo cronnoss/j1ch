@@ -24,6 +24,7 @@ public class TestAddFlight extends TestJUnitTestBase {
         Thread.sleep(5000);
 
         driver.findElement(By.cssSelector(".btn-toolbar > .btn-primary")).click();
+        Thread.sleep(5000);
         driver.findElement(By.name("booking_ref")).click();
         driver.findElement(By.name("booking_ref")).sendKeys("TTTTTT");
         driver.findElement(By.name("airline_code")).click();
