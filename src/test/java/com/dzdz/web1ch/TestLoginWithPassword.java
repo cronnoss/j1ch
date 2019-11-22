@@ -21,6 +21,6 @@ public class TestLoginWithPassword extends TestJUnitTestBase {
         driver.switchTo().activeElement();
         Thread.sleep(5000);
         driver.findElement(By.id("onesignal-popover-cancel-button")).click();
-        Thread.sleep(5000);
+        Thread.sleep(4000);
     }
 }
