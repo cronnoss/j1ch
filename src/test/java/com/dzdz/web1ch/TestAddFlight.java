@@ -20,24 +20,25 @@ public class TestAddFlight extends TestJUnitTestBase {
         driver.findElement(By.name("password")).sendKeys("UbSme!pvy");
         driver.findElement(By.xpath("//button[@class='btn btn-primary btn-block']")).click();
         Thread.sleep(5000);
+        try {
+            driver.switchTo().activeElement();
+            Thread.sleep(3000);
+            driver.findElement(By.id("onesignal-popover-cancel-button")).click();
+            Thread.sleep(3000);
+        } finally {
+            driver.findElement(By.cssSelector(".btn-toolbar > .btn-primary")).click();
+            Thread.sleep(3000);
+            driver.findElement(By.name("booking_ref")).click();
+            driver.findElement(By.name("booking_ref")).sendKeys("TTTTTT");
+            driver.findElement(By.name("airline_code")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.name("airline_code")).sendKeys("SU: Aeroflot");
+            Thread.sleep(3000);
 
-        /*driver.switchTo().activeElement();
-        Thread.sleep(5000);
-        driver.findElement(By.id("onesignal-popover-cancel-button")).click();
-        Thread.sleep(5000);*/
-
-        driver.findElement(By.cssSelector(".btn-toolbar > .btn-primary")).click();
-        Thread.sleep(6000);
-        driver.findElement(By.name("booking_ref")).click();
-        driver.findElement(By.name("booking_ref")).sendKeys("TTTTTT");
-        driver.findElement(By.name("airline_code")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.name("airline_code")).sendKeys("SU: Aeroflot");
-        Thread.sleep(3000);
-
-        WebElement element = driver.findElement(By.cssSelector(".selected"));
-        Actions builder = new Actions(driver);
-        builder.moveToElement(element).clickAndHold().perform();
-        Thread.sleep(5000);
+            WebElement element = driver.findElement(By.cssSelector(".selected"));
+            Actions builder = new Actions(driver);
+            builder.moveToElement(element).clickAndHold().perform();
+            Thread.sleep(3000);
+        }
     }
 }
