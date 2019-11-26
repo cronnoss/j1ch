@@ -4,9 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 import java.io.IOException;
