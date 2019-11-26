@@ -13,8 +13,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
     @Test
     public void testFlightCreation() throws InterruptedException {
         login();
-        driver.findElement(By.cssSelector(".btn-toolbar > .btn-primary")).click();
-        Thread.sleep(2000);
+        initFlightCreation(By.xpath("//button[@data-bind='btn-main-add']"), 2000); //".btn-toolbar > .btn-primary"
         driver.findElement(By.name("booking_ref")).click();
         driver.findElement(By.name("booking_ref")).sendKeys("TUZ2R7");
         driver.findElement(By.name("airline_code")).click();
@@ -50,6 +49,11 @@ public class FlightCreationTest extends TestJUnitTestBase {
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-class='thread']")));
     }
 
+    private void initFlightCreation(By by, int i) throws InterruptedException {
+        driver.findElement(by).click();
+        Thread.sleep(i);
+    }
+
     private void login() throws InterruptedException {
         driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -68,7 +72,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         } finally {
             //go to HomePage
             driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
     }
 }
