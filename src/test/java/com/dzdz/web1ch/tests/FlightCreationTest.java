@@ -43,11 +43,13 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
         Thread.sleep(1000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
         driver.findElement(By.name("destination_code")).sendKeys("JFK");
         Thread.sleep(3000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(1000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
         driver.findElement(By.cssSelector(".form-group > .btn")).click();
         driver.findElement(By.name("first_name")).click();
         driver.findElement(By.name("first_name")).sendKeys("Greta");
