@@ -16,7 +16,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         login("test9161@yahoo.com", "UbSme!pvy");
         gotoHome();
         initFlightCreation();
-        fillFlightForm("TUZ2R7", "LH", "001", "20191231", "1700", "1800", "TXL", "JFK", "Greta", "Garbo");
+        fillFlightForm(new FlightData("TUZ2R7", "LH", "001", "20191231", "1700", "1800", "TXL", "JFK", "Greta", "Garbo"));
         submitFlightCreation();
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-class='thread']")));
     }
@@ -56,33 +56,33 @@ public class FlightCreationTest extends TestJUnitTestBase {
         }
     }
 
-    private void fillFlightForm(String pnr, String airlineCode, String flightNum, String date, String flightTime, String arrivalTime, String departure, String destination, String firstName, String lastName) throws InterruptedException {
+    private void fillFlightForm(FlightData flightData) throws InterruptedException {
         driver.findElement(By.name("booking_ref")).click();
-        driver.findElement(By.name("booking_ref")).sendKeys(pnr);
+        driver.findElement(By.name("booking_ref")).sendKeys(flightData.getPnr());
         driver.findElement(By.name("airline_code")).click();
         Thread.sleep(1000);
-        driver.findElement(By.name("airline_code")).sendKeys(airlineCode);
+        driver.findElement(By.name("airline_code")).sendKeys(flightData.getAirlineCode());
         Thread.sleep(4000);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
         driver.findElement(By.cssSelector(".obj-flight")).click();
-        driver.findElement(By.name("flight_num")).sendKeys(flightNum);
-        driver.findElement(By.name("flight_date")).sendKeys(date);
+        driver.findElement(By.name("flight_num")).sendKeys(flightData.getFlightNum());
+        driver.findElement(By.name("flight_date")).sendKeys(flightData.getDate());
         Thread.sleep(1000);
         driver.findElement(By.name("flight_time")).sendKeys(Keys.ENTER);
         driver.findElement(By.name("flight_time")).clear();
-        driver.findElement(By.name("flight_time")).sendKeys(flightTime);
+        driver.findElement(By.name("flight_time")).sendKeys(flightData.getFlightTime());
         driver.findElement(By.name("arrival_time")).sendKeys(Keys.ENTER);
         driver.findElement(By.name("arrival_time")).clear();
-        driver.findElement(By.name("arrival_time")).sendKeys(arrivalTime);
+        driver.findElement(By.name("arrival_time")).sendKeys(flightData.getArrivalTime());
         Thread.sleep(4000);
-        driver.findElement(By.name("departure_code")).sendKeys(departure);
+        driver.findElement(By.name("departure_code")).sendKeys(flightData.getDeparture());
         Thread.sleep(3000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
         Thread.sleep(2000);
-        driver.findElement(By.name("destination_code")).sendKeys(destination);
+        driver.findElement(By.name("destination_code")).sendKeys(flightData.getDestination());
         Thread.sleep(5000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
@@ -90,8 +90,8 @@ public class FlightCreationTest extends TestJUnitTestBase {
         Thread.sleep(2000);
         driver.findElement(By.cssSelector(".form-group > .btn")).click();
         driver.findElement(By.name("first_name")).click();
-        driver.findElement(By.name("first_name")).sendKeys(firstName);
-        driver.findElement(By.name("last_name")).sendKeys(lastName);
+        driver.findElement(By.name("first_name")).sendKeys(flightData.getFirstName());
+        driver.findElement(By.name("last_name")).sendKeys(flightData.getLastName());
         Thread.sleep(1000);
     }
 
