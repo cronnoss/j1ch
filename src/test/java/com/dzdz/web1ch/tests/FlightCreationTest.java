@@ -62,7 +62,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("airline_code")).click();
         Thread.sleep(1000);
         driver.findElement(By.name("airline_code")).sendKeys("LH");
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
         driver.findElement(By.cssSelector(".obj-flight")).click();
@@ -83,7 +83,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys("JFK");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
