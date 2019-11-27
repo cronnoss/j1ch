@@ -13,7 +13,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
 
     @Test
     public void testFlightCreation() throws InterruptedException {
-        login();
+        login("test9161@yahoo.com", "UbSme!pvy");
         gotoHome();
         initFlightCreation();
         fillFlightForm();
@@ -21,14 +21,14 @@ public class FlightCreationTest extends TestJUnitTestBase {
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-class='thread']")));
     }
 
-    private void login() throws InterruptedException {
+    private void login(String email, String password) throws InterruptedException {
         driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector(".btn-default:nth-child(2)")).click();
         driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).sendKeys("test9161@yahoo.com");
+        driver.findElement(By.name("email")).sendKeys(email);
         driver.findElement(By.name("password")).click();
-        driver.findElement(By.name("password")).sendKeys("UbSme!pvy");
+        driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.xpath("//button[@class='btn btn-primary btn-block']")).click();
         Thread.sleep(5000);
         try {
