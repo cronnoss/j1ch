@@ -24,7 +24,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("booking_ref")).sendKeys("TUZ2R7");
         driver.findElement(By.name("airline_code")).click();
         Thread.sleep(1000);
-        driver.findElement(By.name("airline_code")).sendKeys("SU");
+        driver.findElement(By.name("airline_code")).sendKeys("LH");
         Thread.sleep(3000);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
@@ -39,7 +39,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("arrival_time")).clear();
         driver.findElement(By.name("arrival_time")).sendKeys("1800");
         Thread.sleep(4000);
-        driver.findElement(By.name("departure_code")).sendKeys("SVO");
+        driver.findElement(By.name("departure_code")).sendKeys("TXL");
         Thread.sleep(3000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
         Thread.sleep(1000);
