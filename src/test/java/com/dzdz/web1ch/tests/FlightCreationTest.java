@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,10 +14,16 @@ public class FlightCreationTest extends TestJUnitTestBase {
     @Test
     public void testFlightCreation() throws InterruptedException {
         login();
-        initFlightCreation(By.xpath("//button[@data-bind='btn-main-add']"), 2000); //".btn-toolbar > .btn-primary"
+        gotoHome();
+        try {
+            initFlightCreation(By.xpath("//button[@data-bind='btn-main-add']"), 2000);
+        } catch (TimeoutException ex) {
+            initFlightCreation(By.cssSelector(".btn-toolbar > .btn-primary"), 2000);
+        }
         driver.findElement(By.name("booking_ref")).click();
         driver.findElement(By.name("booking_ref")).sendKeys("TUZ2R7");
         driver.findElement(By.name("airline_code")).click();
+        Thread.sleep(1000);
         driver.findElement(By.name("airline_code")).sendKeys("SU");
         Thread.sleep(3000);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
@@ -70,9 +77,12 @@ public class FlightCreationTest extends TestJUnitTestBase {
             driver.findElement(By.id("onesignal-popover-cancel-button")).click();
             Thread.sleep(2000);
         } finally {
-            //go to HomePage
-            driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
-            Thread.sleep(2000);
+            gotoHome();
         }
+    }
+
+    private void gotoHome() throws InterruptedException {
+        driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
+        Thread.sleep(2000);
     }
 }
