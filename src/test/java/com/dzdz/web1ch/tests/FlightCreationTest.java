@@ -39,7 +39,7 @@ public class FlightCreationTest extends TestJUnitTestBase {
         driver.findElement(By.name("arrival_time")).clear();
         driver.findElement(By.name("arrival_time")).sendKeys("1800");
         Thread.sleep(2000);
-        driver.findElement(By.name("departure_code")).sendKeys("SVO");
+        driver.findElement(By.name("departure_code")).sendKeys("Sheremetyevo");
         Thread.sleep(3000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
         Thread.sleep(1000);
