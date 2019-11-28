@@ -22,17 +22,13 @@ public class TestJUnitTestBase {
     protected WebDriver driver;
 
     @Before
-    public void initTestSuite() throws IOException {
+    public void initTestSuiteAndWebDriver() throws IOException, InterruptedException {
         SuiteConfiguration config = new SuiteConfiguration();
         baseUrl = config.getProperty("site.url");
         if (config.hasProperty("grid.url") && !"".equals(config.getProperty("grid.url"))) {
             gridHubUrl = new URL(config.getProperty("grid.url"));
         }
         capabilities = config.getCapabilities();
-    }
-
-    @Before
-    public void initWebDriver() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
         driver.manage().window().maximize();
         login("test9161@yahoo.com", "UbSme!pvy");
