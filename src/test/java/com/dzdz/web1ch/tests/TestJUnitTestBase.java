@@ -12,7 +12,7 @@ import java.net.URL;
  * Base class for TestJUnit-based test classes
  */
 public class TestJUnitTestBase {
-    protected final ApplicationManager app = new ApplicationManager(); //extends ApplicationManager
+    protected final ApplicationManager app = new ApplicationManager();
 
     @Before
     public void initTestSuite() throws IOException, InterruptedException {

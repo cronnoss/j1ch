@@ -36,11 +36,10 @@ public class ApplicationManager {
         try {
             //close popUpWindow
             driver.switchTo().activeElement();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.findElement(By.id("onesignal-popover-cancel-button")).click();
             Thread.sleep(2000);
-        } catch (TimeoutException e) {
-            System.out.println("TimeoutException for PopUp window");
+        } catch (NoSuchElementException e) {
+            System.out.println("NoSuchElementException for PopUp window");
         } finally {
             gotoHome();
         }
