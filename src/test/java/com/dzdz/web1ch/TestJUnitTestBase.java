@@ -115,7 +115,7 @@ public class TestJUnitTestBase {
         driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
-        js.executeScript("window.scrollBy(0,200)");
+        js.executeScript("window.scrollBy(0,300)");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
         Thread.sleep(1000);
