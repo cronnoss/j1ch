@@ -1,45 +1,29 @@
-package com.dzdz.web1ch;
+package com.dzdz.web1ch.appmanager;
 
-import com.dzdz.web1ch.tests.FlightData;
-import org.junit.After;
-import org.junit.Before;
+import com.dzdz.web1ch.model.FlightData;
 import org.openqa.selenium.*;
 import ru.stqa.selenium.factory.WebDriverPool;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Base class for TestJUnit-based test classes
- */
-public class TestJUnitTestBase {
+public class ApplicationManager {
+    public static URL gridHubUrl = null;
+    public static String baseUrl;
+    public static Capabilities capabilities;
+    public WebDriver driver;
 
-    protected static URL gridHubUrl = null;
-    protected static String baseUrl;
-    protected static Capabilities capabilities;
-
-    protected WebDriver driver;
-
-    @Before
-    public void initTestSuiteAndWebDriver() throws IOException, InterruptedException {
-        SuiteConfiguration config = new SuiteConfiguration();
-        baseUrl = config.getProperty("site.url");
-        if (config.hasProperty("grid.url") && !"".equals(config.getProperty("grid.url"))) {
-            gridHubUrl = new URL(config.getProperty("grid.url"));
-        }
-        capabilities = config.getCapabilities();
+    public void init() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
         driver.manage().window().maximize();
         login("test9161@yahoo.com", "UbSme!pvy");
     }
 
-    @After //(alwaysRun = true)
-    public void tearDown() {
+    public void stop() {
         WebDriverPool.DEFAULT.dismissAll();
     }
 
-    protected void login(String email, String password) throws InterruptedException {
+    public void login(String email, String password) throws InterruptedException {
         driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector(".btn-default:nth-child(2)")).click();
@@ -62,13 +46,13 @@ public class TestJUnitTestBase {
         }
     }
 
-    protected void gotoHome() throws InterruptedException {
+    public void gotoHome() throws InterruptedException {
         Thread.sleep(2000);
         driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
         Thread.sleep(2000);
     }
 
-    protected void initFlightCreation() throws InterruptedException {
+    public void initFlightCreation() throws InterruptedException {
         try {
             driver.findElement(By.xpath("//button[@data-bind='btn-main-add']")).click();
             Thread.sleep(2000);
@@ -78,7 +62,7 @@ public class TestJUnitTestBase {
         }
     }
 
-    protected void fillFlightForm(FlightData flightData) throws InterruptedException {
+    public void fillFlightForm(FlightData flightData) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.name("booking_ref")).click();
         driver.findElement(By.name("booking_ref")).sendKeys(flightData.getPnr());
@@ -121,17 +105,17 @@ public class TestJUnitTestBase {
         Thread.sleep(1000);
     }
 
-    protected void submitFlightCreation() throws InterruptedException {
+    public void submitFlightCreation() throws InterruptedException {
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         Thread.sleep(3000);
     }
 
-    protected void selectFlight() throws InterruptedException {
+    public void selectFlight() throws InterruptedException {
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg")).click();
         Thread.sleep(3000);
     }
 
-    protected void deleteSelectedFlights() throws InterruptedException {
+    public void deleteSelectedFlights() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1300)");
         Thread.sleep(2000);

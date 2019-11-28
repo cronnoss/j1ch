@@ -1,4 +1,4 @@
-package com.dzdz.web1ch.tests;
+package com.dzdz.web1ch.model;
 
 public class FlightData {
     private final String pnr;
