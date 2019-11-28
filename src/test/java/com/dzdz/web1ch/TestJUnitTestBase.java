@@ -55,14 +55,18 @@ public class TestJUnitTestBase {
         try {
             //close popUpWindow
             driver.switchTo().activeElement();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.findElement(By.id("onesignal-popover-cancel-button")).click();
             Thread.sleep(2000);
+        } catch (TimeoutException e) {
+            System.out.println("TimeoutException for PopUp window");
         } finally {
             gotoHome();
         }
     }
 
     protected void gotoHome() throws InterruptedException {
+        Thread.sleep(2000);
         driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
         Thread.sleep(2000);
     }
@@ -119,5 +123,18 @@ public class TestJUnitTestBase {
     protected void submitFlightCreation() throws InterruptedException {
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         Thread.sleep(3000);
+    }
+
+    protected void selectFlight() throws InterruptedException {
+        Thread.sleep(5000);
+        driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg")).click();
+        Thread.sleep(5000);
+    }
+
+    protected void deleteSelectedFlights() throws InterruptedException {
+        driver.findElement(By.xpath("//button[contains(.,' Delete')]")).click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(5000);
     }
 }
