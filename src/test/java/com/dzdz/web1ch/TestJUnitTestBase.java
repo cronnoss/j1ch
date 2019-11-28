@@ -83,6 +83,7 @@ public class TestJUnitTestBase {
     }
 
     protected void fillFlightForm(FlightData flightData) throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.name("booking_ref")).click();
         driver.findElement(By.name("booking_ref")).sendKeys(flightData.getPnr());
         driver.findElement(By.name("airline_code")).click();
@@ -101,7 +102,8 @@ public class TestJUnitTestBase {
         driver.findElement(By.name("arrival_time")).sendKeys(Keys.ENTER);
         driver.findElement(By.name("arrival_time")).clear();
         driver.findElement(By.name("arrival_time")).sendKeys(flightData.getArrivalTime());
-        Thread.sleep(4000);
+        js.executeScript("window.scrollBy(0,100)");
+        Thread.sleep(3000);
         driver.findElement(By.name("departure_code")).sendKeys(flightData.getDeparture());
         Thread.sleep(3000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
@@ -109,10 +111,11 @@ public class TestJUnitTestBase {
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys(flightData.getDestination());
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
+        js.executeScript("window.scrollBy(0,200)");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
         Thread.sleep(1000);
