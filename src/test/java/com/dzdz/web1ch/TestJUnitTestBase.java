@@ -34,6 +34,7 @@ public class TestJUnitTestBase {
     @Before
     public void initWebDriver() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
+        driver.manage().window().maximize();
         login("test9161@yahoo.com", "UbSme!pvy");
     }
 
