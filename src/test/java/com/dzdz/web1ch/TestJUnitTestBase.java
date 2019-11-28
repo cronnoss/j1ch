@@ -127,15 +127,17 @@ public class TestJUnitTestBase {
     }
 
     protected void selectFlight() throws InterruptedException {
-        Thread.sleep(5000);
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg")).click();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 
     protected void deleteSelectedFlights() throws InterruptedException {
-        driver.findElement(By.xpath("//button[contains(.,' Delete')]")).click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1300)");
         Thread.sleep(2000);
+        driver.findElement(By.xpath("//button[contains(.,' Delete')]")).click();
+        Thread.sleep(3000);
         driver.switchTo().alert().accept();
-        Thread.sleep(5000);
+        Thread.sleep(1000);
     }
 }
