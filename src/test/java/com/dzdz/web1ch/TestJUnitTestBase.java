@@ -113,7 +113,8 @@ public class TestJUnitTestBase {
         Thread.sleep(2000);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
         Thread.sleep(2000);
-        driver.findElement(By.cssSelector(".form-group > .btn")).click();
+        driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
+        Thread.sleep(1000);
         driver.findElement(By.name("first_name")).click();
         driver.findElement(By.name("first_name")).sendKeys(flightData.getFirstName());
         driver.findElement(By.name("last_name")).sendKeys(flightData.getLastName());
