@@ -4,10 +4,9 @@ import com.dzdz.web1ch.model.FlightData;
 import org.openqa.selenium.*;
 
 public class FlightHelper {
+    private WebDriver driver;
 
-    public WebDriver driver;
-
-    public FlightHelper(WebDriver driver) {
+    FlightHelper(WebDriver driver) {
         this.driver = driver;
     }
 

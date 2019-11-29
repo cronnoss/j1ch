@@ -6,7 +6,7 @@ public class FlightDeletionTests extends TestJUnitTestBase {
 
     @Test
     public void testFlightDeletion() throws InterruptedException {
-        app.gotoHome();
+        app.getNavigationHelper().gotoHome();
         app.getFlightHelper().openFlightForEditing();
         app.getFlightHelper().deleteEditableFlight();
     }

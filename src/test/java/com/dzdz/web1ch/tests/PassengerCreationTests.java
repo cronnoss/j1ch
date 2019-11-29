@@ -7,7 +7,7 @@ public class PassengerCreationTests extends TestJUnitTestBase {
 
     @Test
     public void testPassengerCreation() throws InterruptedException {
-        app.gotoPassengersPage();
+        app.getNavigationHelper().gotoPassengersPage();
         app.initPassengerCreation();
         app.fillPassengerForm( new PassengerData("Daniel", "Zagar","19800505", "Slovenia", "Slovenia", "PB1258535","Slovenia","20140216","20240215"));
         app.submitPassengerCreation();

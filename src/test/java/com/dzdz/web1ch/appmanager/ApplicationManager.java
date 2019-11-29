@@ -5,7 +5,6 @@ import org.openqa.selenium.*;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     public static URL gridHubUrl = null;
@@ -13,52 +12,22 @@ public class ApplicationManager {
     public static Capabilities capabilities;
 
     public WebDriver driver;
-
+    private SessionHelper sessionHelper;
     private FlightHelper flightHelper;
+    private NavigationHelper navigationHelper;
 
     public void init() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
         driver.manage().window().maximize();
+        driver.get(baseUrl);
+        sessionHelper = new SessionHelper(driver);
+        navigationHelper = new NavigationHelper(driver);
         flightHelper = new FlightHelper(driver);
-        login("test9161@yahoo.com", "UbSme!pvy");
+        sessionHelper.login("test9161@yahoo.com", "UbSme!pvy");
     }
 
     public void stop() {
         WebDriverPool.DEFAULT.dismissAll();
-    }
-
-    public void login(String email, String password) throws InterruptedException {
-        driver.get(baseUrl);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.cssSelector(".btn-default:nth-child(2)")).click();
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).sendKeys(email);
-        driver.findElement(By.name("password")).click();
-        driver.findElement(By.name("password")).sendKeys(password);
-        driver.findElement(By.xpath("//button[@class='btn btn-primary btn-block']")).click();
-        Thread.sleep(5000);
-        try {
-            //close popUpWindow
-            driver.switchTo().activeElement();
-            driver.findElement(By.id("onesignal-popover-cancel-button")).click();
-            Thread.sleep(2000);
-        } catch (NoSuchElementException e) {
-            System.out.println("NoSuchElementException for PopUp window");
-        } finally {
-            gotoHome();
-        }
-    }
-
-    public void gotoHome() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("(//span[@class='menu-label'])[1]")).click();
-        Thread.sleep(2000);
-    }
-
-    public void gotoPassengersPage() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("(//span[@class='menu-label'])[2]")).click();
-        Thread.sleep(2000);
     }
 
     public void initPassengerCreation() throws InterruptedException {
@@ -68,7 +37,6 @@ public class ApplicationManager {
 
     public void fillPassengerForm(PassengerData passengerData) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        //click male
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap .btn-group > .btn:nth-child(1)")).click();
 
         driver.findElement(By.name("first_name")).click();
@@ -141,5 +109,9 @@ public class ApplicationManager {
 
     public FlightHelper getFlightHelper() {
         return flightHelper;
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
     }
 }
