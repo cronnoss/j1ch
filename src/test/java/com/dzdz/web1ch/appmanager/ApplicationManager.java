@@ -51,6 +51,12 @@ public class ApplicationManager {
         Thread.sleep(2000);
     }
 
+    public void gotoPassengersPage() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("(//span[@class='menu-label'])[2]")).click();
+        Thread.sleep(2000);
+    }
+
     public void initFlightCreation() throws InterruptedException {
         try {
             driver.findElement(By.xpath("//button[@data-bind='btn-main-add']")).click();
@@ -109,16 +115,31 @@ public class ApplicationManager {
         Thread.sleep(3000);
     }
 
-    public void selectFlight() throws InterruptedException {
+    public void openFlightForEditing() throws InterruptedException {
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg")).click();
         Thread.sleep(3000);
     }
 
-    public void deleteSelectedFlights() throws InterruptedException {
+    public void openPassengerForEditing() throws InterruptedException {
+        driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header > .btn-clear svg")).click();
+        Thread.sleep(3000);
+    }
+
+    public void deleteEditableFlight() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,1300)");
+        js.executeScript("window.scrollBy(0,1100)");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[contains(.,' Delete')]")).click();
+        Thread.sleep(3000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(1000);
+    }
+
+    public void deleteEditablePassenger() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,400)");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//div[4]/div/button")).click();
         Thread.sleep(3000);
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
