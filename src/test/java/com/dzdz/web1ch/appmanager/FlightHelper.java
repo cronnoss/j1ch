@@ -35,6 +35,9 @@ public class FlightHelper {
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
 
+        js.executeScript("window.scrollBy(0,100)");
+        Thread.sleep(1000);
+
         driver.findElement(By.name("flight_num")).click();
         driver.findElement(By.name("flight_num")).clear();
         Thread.sleep(1000);
