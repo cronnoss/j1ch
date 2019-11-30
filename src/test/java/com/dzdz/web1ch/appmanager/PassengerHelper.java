@@ -53,9 +53,10 @@ public class PassengerHelper {
         driver.findElement(By.name("residence_id")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("residence_id")).sendKeys(Keys.ENTER);
 
-        js.executeScript("window.scrollBy(0,700)");
+        js.executeScript("window.scrollBy(0,100)");
         driver.findElement(By.linkText("Add")).click();
         Thread.sleep(2000);
+        js.executeScript("window.scrollBy(0,300)");
 
         driver.findElement(By.name("passport_num")).click();
         driver.findElement(By.name("passport_num")).clear();
@@ -70,13 +71,11 @@ public class PassengerHelper {
         driver.findElement(By.name("passport_issue_country_id")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("passport_issue_country_id")).sendKeys(Keys.ENTER);
 
-        //Thread.sleep(1000);
         driver.findElement(By.name("passport_issue_date")).click();
         driver.findElement(By.name("passport_issue_date")).clear();
         Thread.sleep(1000);
         driver.findElement(By.name("passport_issue_date")).sendKeys(passengerData.getPassportIssueDate());
 
-        //Thread.sleep(1000);
         driver.findElement(By.name("passport_expiry_date")).click();
         driver.findElement(By.name("passport_expiry_date")).clear();
         Thread.sleep(1000);
