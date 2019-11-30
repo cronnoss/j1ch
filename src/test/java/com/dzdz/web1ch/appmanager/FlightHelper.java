@@ -31,7 +31,7 @@ public class FlightHelper {
         driver.findElement(By.name("airline_code")).clear();
         Thread.sleep(1000);
         driver.findElement(By.name("airline_code")).sendKeys(flightData.getAirlineCode());
-        Thread.sleep(4000);
+        Thread.sleep(2000);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
 
@@ -62,19 +62,16 @@ public class FlightHelper {
         driver.findElement(By.name("departure_code")).clear();
         Thread.sleep(1000);
         driver.findElement(By.name("departure_code")).sendKeys(flightData.getDeparture());
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
-        Thread.sleep(2000);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
-        Thread.sleep(2000);
 
         driver.findElement(By.name("destination_code")).click();
         driver.findElement(By.name("destination_code")).clear();
         Thread.sleep(1000);
         driver.findElement(By.name("destination_code")).sendKeys(flightData.getDestination());
-        Thread.sleep(3000);
-        driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
+        driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
 
         js.executeScript("window.scrollBy(0,300)");
