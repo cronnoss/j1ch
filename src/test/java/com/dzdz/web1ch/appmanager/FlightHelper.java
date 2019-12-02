@@ -3,11 +3,10 @@ package com.dzdz.web1ch.appmanager;
 import com.dzdz.web1ch.model.FlightData;
 import org.openqa.selenium.*;
 
-public class FlightHelper {
-    private WebDriver driver;
+public class FlightHelper extends HelperBase {
 
     FlightHelper(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void initFlightCreation() throws InterruptedException {
@@ -22,98 +21,56 @@ public class FlightHelper {
 
     public void fillFlightForm(FlightData flightData) throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        driver.findElement(By.name("booking_ref")).click();
-        driver.findElement(By.name("booking_ref")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("booking_ref")).sendKeys(flightData.getPnr());
 
-        driver.findElement(By.name("airline_code")).click();
-        driver.findElement(By.name("airline_code")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("airline_code")).sendKeys(flightData.getAirlineCode());
-        Thread.sleep(2000);
-        driver.findElement(By.name("airline_code")).sendKeys(Keys.DOWN);
-        driver.findElement(By.name("airline_code")).sendKeys(Keys.ENTER);
+        type(By.name("booking_ref"), flightData.getPnr());
+        type(By.name("airline_code"), flightData.getAirlineCode());
+        downEnter(By.name("airline_code"));
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(1000);
 
-        driver.findElement(By.name("flight_num")).click();
-        driver.findElement(By.name("flight_num")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("flight_num")).sendKeys(flightData.getFlightNum());
-
-        driver.findElement(By.name("flight_date")).click();
-        driver.findElement(By.name("flight_date")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("flight_date")).sendKeys(flightData.getDate());
-
-        driver.findElement(By.name("flight_time")).click();
-        driver.findElement(By.name("flight_time")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("flight_time")).sendKeys(flightData.getFlightTime());
-
-        driver.findElement(By.name("arrival_time")).click();
-        driver.findElement(By.name("arrival_time")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("arrival_time")).sendKeys(flightData.getArrivalTime());
+        type(By.name("flight_num"), flightData.getFlightNum());
+        type(By.name("flight_date"), flightData.getDate());
+        type(By.name("flight_time"), flightData.getFlightTime());
+        type(By.name("arrival_time"), flightData.getArrivalTime());
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(3000);
 
-        driver.findElement(By.name("departure_code")).click();
-        driver.findElement(By.name("departure_code")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("departure_code")).sendKeys(flightData.getDeparture());
-        Thread.sleep(2000);
-        driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
-        driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
+        type(By.name("departure_code"), flightData.getDeparture());
+        downEnter(By.name("departure_code"));
 
         WebElement Element = driver.findElement(By.name("destination_code"));
         js.executeScript("arguments[0].scrollIntoView();", Element);
         js.executeScript("window.scrollBy(0,-70)");
 
-        driver.findElement(By.name("destination_code")).click();
-        driver.findElement(By.name("destination_code")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("destination_code")).sendKeys(flightData.getDestination());
-        Thread.sleep(2000);
-        driver.findElement(By.name("destination_code")).sendKeys(Keys.DOWN);
-        driver.findElement(By.name("destination_code")).sendKeys(Keys.ENTER);
+        type(By.name("destination_code"), flightData.getDestination());
+        downEnter(By.name("destination_code"));
 
         js.executeScript("window.scrollBy(0,300)");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
         Thread.sleep(1000);
 
-        driver.findElement(By.name("first_name")).click();
-        driver.findElement(By.name("first_name")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("first_name")).sendKeys(flightData.getFirstName());
-
-        driver.findElement(By.name("last_name")).click();
-        driver.findElement(By.name("last_name")).clear();
-        Thread.sleep(1000);
-        driver.findElement(By.name("last_name")).sendKeys(flightData.getLastName());
+        type(By.name("first_name"), flightData.getFirstName());
+        type(By.name("last_name"), flightData.getLastName());
         Thread.sleep(1000);
     }
 
     public void submitFlightCreation() throws InterruptedException {
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(3000);
+        click(By.xpath("//button[@type='submit']"));
+        return;
     }
 
     public void openFlightForEditing() throws InterruptedException {
-        driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg")).click();
-        Thread.sleep(3000);
+        click(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg"));
     }
 
     public void deleteEditableFlight() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1100)");
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[contains(.,' Delete')]")).click();
-        Thread.sleep(3000);
+        click(By.xpath("//button[contains(.,' Delete')]"));
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
     }
