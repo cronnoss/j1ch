@@ -69,8 +69,9 @@ public class FlightHelper {
         driver.findElement(By.name("departure_code")).sendKeys(Keys.DOWN);
         driver.findElement(By.name("departure_code")).sendKeys(Keys.ENTER);
 
-        js.executeScript("window.scrollBy(0,100)");
-        Thread.sleep(1000);
+        WebElement Element = driver.findElement(By.name("destination_code"));
+        js.executeScript("arguments[0].scrollIntoView();", Element);
+        js.executeScript("window.scrollBy(0,-70)");
 
         driver.findElement(By.name("destination_code")).click();
         driver.findElement(By.name("destination_code")).clear();
