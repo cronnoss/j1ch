@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 public class HelperBase {
     protected WebDriver driver;
 
@@ -27,5 +30,11 @@ public class HelperBase {
     protected void click(By locator) throws InterruptedException {
         driver.findElement(locator).click();
         Thread.sleep(3000);
+    }
+
+    protected void keyTab() throws AWTException {
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_TAB);
     }
 }

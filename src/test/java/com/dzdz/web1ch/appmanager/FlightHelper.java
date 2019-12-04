@@ -4,7 +4,6 @@ import com.dzdz.web1ch.model.FlightData;
 import org.openqa.selenium.*;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class FlightHelper extends HelperBase {
 
@@ -38,15 +37,16 @@ public class FlightHelper extends HelperBase {
 
         type(By.name("flight_num"), flightData.getFlightNum());
         type(By.name("flight_date"), flightData.getDate());
+        keyTab();
 
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_TAB);
+        driver.findElement(By.name("flight_time")).sendKeys(Keys.CONTROL + "a");
+        driver.findElement(By.name("flight_time")).sendKeys(Keys.DELETE);
+        driver.findElement(By.name("flight_time")).sendKeys(flightData.getFlightTime());
 
-        type(By.name("flight_time"), flightData.getFlightTime());
-        downEnter(By.name("flight_time"));
-        type(By.name("arrival_time"), flightData.getArrivalTime());
-        downEnter(By.name("arrival_time"));
+        driver.findElement(By.name("arrival_time")).sendKeys(Keys.CONTROL + "a");
+        driver.findElement(By.name("arrival_time")).sendKeys(Keys.DELETE);
+        driver.findElement(By.name("arrival_time")).sendKeys(flightData.getArrivalTime());
+        keyTab();
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(3000);
@@ -61,13 +61,27 @@ public class FlightHelper extends HelperBase {
         type(By.name("destination_code"), flightData.getDestination());
         downEnter(By.name("destination_code"));
 
-        js.executeScript("window.scrollBy(0,300)");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
-        Thread.sleep(1000);
+        WebElement passengers = driver.findElement(By.xpath("//h3[contains(.,'Passengers')]")); //css=.backside h3
+        js.executeScript("arguments[0].scrollIntoView();", passengers);
+        js.executeScript("window.scrollBy(0,-90)");
 
-        type(By.name("first_name"), flightData.getFirstName());
-        type(By.name("last_name"), flightData.getLastName());
+        try {
+            driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
+            Thread.sleep(1000);
+            type(By.name("first_name"), flightData.getFirstName());
+            type(By.name("last_name"), flightData.getLastName());
+        } catch (NoSuchElementException e) {
+            System.out.println("NoSuchElementException for add new passenger");
+            try {
+                driver.findElement(By.linkText("Change")).click();
+                Thread.sleep(1000);
+                type(By.name("first_name"), flightData.getFirstName());
+                type(By.name("last_name"), flightData.getLastName());
+            } catch (NoSuchElementException e1) {
+                System.out.println("NoSuchElementException for Change passenger");
+            }
+        }
+
         Thread.sleep(1000);
     }
 
