@@ -2,6 +2,7 @@ package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.SuiteConfiguration;
 import com.dzdz.web1ch.appmanager.ApplicationManager;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 
@@ -32,5 +33,15 @@ public class TestJUnitTestBase {
 
     public ApplicationManager getApp() {
         return app;
+    }
+
+    public static String randomeString() {
+        String generatedstring = RandomStringUtils.randomAlphabetic(6);
+        return (generatedstring);
+    }
+
+    public static String randomeNum() {
+        String generatedString2 = RandomStringUtils.randomNumeric(3);
+        return (generatedString2);
     }
 }

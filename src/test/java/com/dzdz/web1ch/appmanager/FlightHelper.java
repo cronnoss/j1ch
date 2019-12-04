@@ -3,6 +3,9 @@ package com.dzdz.web1ch.appmanager;
 import com.dzdz.web1ch.model.FlightData;
 import org.openqa.selenium.*;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 public class FlightHelper extends HelperBase {
 
     FlightHelper(WebDriver driver) {
@@ -19,8 +22,12 @@ public class FlightHelper extends HelperBase {
         }
     }
 
-    public void fillFlightForm(FlightData flightData) throws InterruptedException {
+    public void fillFlightForm(FlightData flightData) throws InterruptedException, AWTException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebElement bookingRef = driver.findElement(By.name("booking_ref"));
+        js.executeScript("arguments[0].scrollIntoView();", bookingRef);
+        js.executeScript("window.scrollBy(0,-70)");
 
         type(By.name("booking_ref"), flightData.getPnr());
         type(By.name("airline_code"), flightData.getAirlineCode());
@@ -31,8 +38,15 @@ public class FlightHelper extends HelperBase {
 
         type(By.name("flight_num"), flightData.getFlightNum());
         type(By.name("flight_date"), flightData.getDate());
+
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_TAB);
+
         type(By.name("flight_time"), flightData.getFlightTime());
+        downEnter(By.name("flight_time"));
         type(By.name("arrival_time"), flightData.getArrivalTime());
+        downEnter(By.name("arrival_time"));
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(3000);
@@ -40,8 +54,8 @@ public class FlightHelper extends HelperBase {
         type(By.name("departure_code"), flightData.getDeparture());
         downEnter(By.name("departure_code"));
 
-        WebElement Element = driver.findElement(By.name("destination_code"));
-        js.executeScript("arguments[0].scrollIntoView();", Element);
+        WebElement destinationCode = driver.findElement(By.name("destination_code"));
+        js.executeScript("arguments[0].scrollIntoView();", destinationCode);
         js.executeScript("window.scrollBy(0,-70)");
 
         type(By.name("destination_code"), flightData.getDestination());
@@ -57,7 +71,7 @@ public class FlightHelper extends HelperBase {
         Thread.sleep(1000);
     }
 
-    public void submitFlightCreation() throws InterruptedException {
+    public void submitSaveFlight() throws InterruptedException {
         click(By.xpath("//button[@type='submit']"));
         return;
     }

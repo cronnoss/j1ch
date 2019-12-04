@@ -18,8 +18,8 @@ public class ApplicationManager {
 
     public void init() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
-        driver.get(baseUrl);
         driver.manage().window().maximize();
+        driver.get(baseUrl);
         sessionHelper = new SessionHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         flightHelper = new FlightHelper(driver);

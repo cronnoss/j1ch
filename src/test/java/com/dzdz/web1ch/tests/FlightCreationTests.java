@@ -5,14 +5,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import java.awt.*;
+
 public class FlightCreationTests extends TestJUnitTestBase {
 
     @Test
-    public void testFlightCreation() throws InterruptedException {
+    public void testFlightCreation() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoHome();
         app.getFlightHelper().initFlightCreation();
-        app.getFlightHelper().fillFlightForm(new FlightData("TUZ2R7", "LH", "001", "20191231", "1700", "1800", "TXL", "JFK", "Greta", "Garbo"));
-        app.getFlightHelper().submitFlightCreation();
+        app.getFlightHelper().fillFlightForm(new FlightData(randomeString(), "LH", randomeNum(), "20191231", "1700", "1800", "TXL", "JFK", "Greta", "Garbo"));
+        app.getFlightHelper().submitSaveFlight();
         Assert.assertNotNull(app.driver.findElement(By.xpath("//div[@data-class='thread']")));
     }
 }
