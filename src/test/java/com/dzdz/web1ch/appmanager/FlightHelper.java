@@ -26,7 +26,7 @@ public class FlightHelper extends HelperBase {
 
         WebElement bookingRef = driver.findElement(By.name("booking_ref"));
         js.executeScript("arguments[0].scrollIntoView();", bookingRef);
-        js.executeScript("window.scrollBy(0,-70)");
+        js.executeScript("window.scrollBy(0,-90)");
 
         type(By.name("booking_ref"), flightData.getPnr());
         type(By.name("airline_code"), flightData.getAirlineCode());
