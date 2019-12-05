@@ -3,7 +3,12 @@
 <suite name="Tests" verbose="5">
   <test name="Test1">
     <classes>
-      <class name="com.dzdz.web1ch.SampleTestNgTest"/>
+      <class name="com.dzdz.web1ch.tests.FlightCreationTests"/>
+      <class name="com.dzdz.web1ch.tests.FlightModificationTests"/>
+      <class name="com.dzdz.web1ch.tests.FlightDeletionTests"/>
+      <class name="com.dzdz.web1ch.tests.PassengerCreationTests"/>
+      <class name="com.dzdz.web1ch.tests.PassengerModificationTests"/>
+      <class name="com.dzdz.web1ch.tests.PassengerDeletionTests"/>
     </classes>
   </test>  
 </suite>
