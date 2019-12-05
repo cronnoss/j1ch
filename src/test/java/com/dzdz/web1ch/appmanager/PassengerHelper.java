@@ -6,7 +6,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-public class PassengerHelper extends HelperBase{
+import java.awt.*;
+import java.util.NoSuchElementException;
+
+public class PassengerHelper extends HelperBase {
 
     PassengerHelper(WebDriver driver) {
         super(driver);
@@ -16,12 +19,12 @@ public class PassengerHelper extends HelperBase{
         click(By.cssSelector(".hidden-sm > .icon > svg"));
     }
 
-    public void fillPassengerForm(PassengerData passengerData) throws InterruptedException {
+    public void fillPassengerForm(PassengerData passengerData) throws InterruptedException, AWTException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap .btn-group > .btn:nth-child(1)")).click();
 
         type(By.name("first_name"), passengerData.getFirstName());
-        type(By.name("last_name"),passengerData.getLastName());
+        type(By.name("last_name"), passengerData.getLastName());
         type(By.name("birth_date"), passengerData.getBirthDate());
         type(By.name("citizenship_id"), passengerData.getCitizenshipId());
         downEnter(By.name("citizenship_id"));
@@ -34,9 +37,15 @@ public class PassengerHelper extends HelperBase{
         downEnter(By.name("residence_id"));
 
         js.executeScript("window.scrollBy(0,100)");
-        driver.findElement(By.linkText("Add")).click();
-        Thread.sleep(2000);
-        js.executeScript("window.scrollBy(0,300)");
+        try {
+            click(By.cssSelector(".card:nth-child(1) .item:nth-child(2) > .form-group:nth-child(1) a:nth-child(1)"));
+            Thread.sleep(2000);
+            js.executeScript("window.scrollBy(0,300)");
+        } catch (NoSuchElementException e) {
+            System.out.println("NoSuchElementException for add passport");
+            click(By.cssSelector(".card:nth-child(1) .item > .form-group:nth-child(1) .input-holder"));
+            Thread.sleep(2000);
+        }
 
         type(By.name("passport_num"), passengerData.getPassportNum());
         type(By.name("passport_issue_country_id"), passengerData.getPassportIssueCountryId());
@@ -44,14 +53,21 @@ public class PassengerHelper extends HelperBase{
         type(By.name("passport_issue_date"), passengerData.getPassportIssueDate());
         driver.findElement(By.name("passport_issue_date")).sendKeys(Keys.ENTER);
 
-        type(By.name("passport_expiry_date"),passengerData.getPassportExpiryDate());
+        type(By.name("passport_expiry_date"), passengerData.getPassportExpiryDate());
         driver.findElement(By.name("passport_expiry_date")).sendKeys(Keys.ENTER);
-        js.executeScript("window.scrollBy(0,200)");
-
+        keyTab();
+        Thread.sleep(1000);
+        js.executeScript("window.scrollBy(0,110)");
     }
 
-    public void submitPassengerCreation() throws InterruptedException {
-        click(By.cssSelector(".item:nth-child(4) .col-xs-7 > .btn"));
+    public void submitSavePassenger() throws InterruptedException {
+        try {
+            click(By.cssSelector(".item:nth-child(4) .col-xs-7 > .btn"));
+            Thread.sleep(1000);
+        } catch (NoSuchElementException e) {
+            System.out.println("NoSuchElementException - css selector save new passenger");
+            click(By.cssSelector(".card:nth-child(1) .item:nth-child(5) .col-xs-7 > .btn"));
+        }
     }
 
     public void openPassengerForEditing() throws InterruptedException {

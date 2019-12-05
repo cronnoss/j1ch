@@ -61,7 +61,7 @@ public class FlightHelper extends HelperBase {
         type(By.name("destination_code"), flightData.getDestination());
         downEnter(By.name("destination_code"));
 
-        WebElement passengers = driver.findElement(By.xpath("//h3[contains(.,'Passengers')]")); //css=.backside h3
+        WebElement passengers = driver.findElement(By.xpath("//h3[contains(.,'Passengers')]"));
         js.executeScript("arguments[0].scrollIntoView();", passengers);
         js.executeScript("window.scrollBy(0,-90)");
 
@@ -81,7 +81,6 @@ public class FlightHelper extends HelperBase {
                 System.out.println("NoSuchElementException for Change passenger");
             }
         }
-
         Thread.sleep(1000);
     }
 
