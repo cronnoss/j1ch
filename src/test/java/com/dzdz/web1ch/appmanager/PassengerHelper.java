@@ -61,13 +61,8 @@ public class PassengerHelper extends HelperBase {
     }
 
     public void submitSavePassenger() throws InterruptedException {
-        try {
-            click(By.cssSelector(".item:nth-child(4) .col-xs-7 > .btn"));
-            Thread.sleep(1000);
-        } catch (NoSuchElementException e) {
-            System.out.println("NoSuchElementException - css selector save new passenger");
-            click(By.cssSelector(".card:nth-child(1) .item:nth-child(5) .col-xs-7 > .btn"));
-        }
+        click(By.xpath("//div[@class='card obj-passenger subcomponent backside']//button[@class='btn btn-primary btn-block'][contains(text(),'Save')]"));
+        Thread.sleep(2000);
     }
 
     public void openPassengerForEditing() throws InterruptedException {
