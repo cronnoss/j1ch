@@ -11,6 +11,7 @@ public class SessionHelper extends HelperBase {
     }
 
     public void login(String email, String password) throws InterruptedException {
+        Thread.sleep(8000);
         driver.findElement(By.cssSelector(".btn-default:nth-child(2)")).click();
         type(By.name("email"), email);
         type(By.name("password"), password);

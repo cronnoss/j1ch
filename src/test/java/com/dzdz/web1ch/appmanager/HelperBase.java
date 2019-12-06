@@ -2,6 +2,7 @@ package com.dzdz.web1ch.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.awt.*;
@@ -22,9 +23,11 @@ public class HelperBase {
 
     protected void type(By locator, String text) throws InterruptedException {
         click(locator);
-        driver.findElement(locator).clear();
-        Thread.sleep(1000);
-        driver.findElement(locator).sendKeys(text);
+        if (text != null) {
+            driver.findElement(locator).clear();
+            Thread.sleep(1000);
+            driver.findElement(locator).sendKeys(text);
+        }
     }
 
     protected void click(By locator) throws InterruptedException {
@@ -36,5 +39,14 @@ public class HelperBase {
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_TAB);
         robot.keyRelease(KeyEvent.VK_TAB);
+    }
+
+    protected boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

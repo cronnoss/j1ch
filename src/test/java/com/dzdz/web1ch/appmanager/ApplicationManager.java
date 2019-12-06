@@ -21,7 +21,7 @@ public class ApplicationManager {
     public void init() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.get(baseUrl);
         sessionHelper = new SessionHelper(driver);
         navigationHelper = new NavigationHelper(driver);

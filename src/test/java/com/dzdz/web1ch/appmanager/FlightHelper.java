@@ -1,6 +1,7 @@
 package com.dzdz.web1ch.appmanager;
 
 import com.dzdz.web1ch.model.FlightData;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ public class FlightHelper extends HelperBase {
         }
     }
 
-    public void fillFlightForm(FlightData flightData) throws InterruptedException, AWTException {
+    public void fillFlightForm(FlightData flightData, boolean creation) throws InterruptedException, AWTException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         WebElement bookingRef = driver.findElement(By.name("booking_ref"));
@@ -65,21 +66,21 @@ public class FlightHelper extends HelperBase {
         js.executeScript("arguments[0].scrollIntoView();", passengers);
         js.executeScript("window.scrollBy(0,-90)");
 
-        try {
+        if (creation) {
             driver.findElement(By.xpath("//button[contains(.,' Add new passenger')]")).click();
             Thread.sleep(1000);
             type(By.name("first_name"), flightData.getFirstName());
             type(By.name("last_name"), flightData.getLastName());
             type(By.name("last_name"), flightData.getMiddleName());
-        } catch (NoSuchElementException e) {
-            System.out.println("NoSuchElementException for add new passenger");
+        } else {
+            Assert.assertFalse(isElementPresent(By.xpath("//button[contains(.,' Add new passenger')]")));
             try {
                 driver.findElement(By.linkText("Change")).click();
                 Thread.sleep(1000);
                 type(By.name("first_name"), flightData.getFirstName());
                 type(By.name("last_name"), flightData.getLastName());
                 type(By.name("last_name"), flightData.getMiddleName());
-            } catch (NoSuchElementException e1) {
+            } catch (NoSuchElementException e) {
                 System.out.println("NoSuchElementException for Change passenger");
             }
         }
