@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     public static URL gridHubUrl = null;
@@ -20,6 +21,7 @@ public class ApplicationManager {
     public void init() throws InterruptedException {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(baseUrl);
         sessionHelper = new SessionHelper(driver);
         navigationHelper = new NavigationHelper(driver);

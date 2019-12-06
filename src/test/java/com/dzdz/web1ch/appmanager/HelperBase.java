@@ -22,11 +22,9 @@ public class HelperBase {
 
     protected void type(By locator, String text) throws InterruptedException {
         click(locator);
-        if (text != null) {
         driver.findElement(locator).clear();
         Thread.sleep(1000);
         driver.findElement(locator).sendKeys(text);
-        }
     }
 
     protected void click(By locator) throws InterruptedException {

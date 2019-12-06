@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class SessionHelper extends HelperBase {
 
     SessionHelper(WebDriver driver) {
@@ -13,7 +11,6 @@ public class SessionHelper extends HelperBase {
     }
 
     public void login(String email, String password) throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector(".btn-default:nth-child(2)")).click();
         type(By.name("email"), email);
         type(By.name("password"), password);

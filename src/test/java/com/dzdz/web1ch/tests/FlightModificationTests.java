@@ -11,7 +11,7 @@ public class FlightModificationTests extends TestJUnitTestBase {
     public void testFlightModification() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoHome();
         app.getFlightHelper().openFlightForEditing();
-        app.getFlightHelper().fillFlightForm(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", "Oven"));
+        app.getFlightHelper().fillFlightForm(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null));
         app.getFlightHelper().submitSaveFlight();
     }
 }
