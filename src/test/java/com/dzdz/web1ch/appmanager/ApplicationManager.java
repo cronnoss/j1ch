@@ -1,6 +1,7 @@
 package com.dzdz.web1ch.appmanager;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 import java.net.URL;
