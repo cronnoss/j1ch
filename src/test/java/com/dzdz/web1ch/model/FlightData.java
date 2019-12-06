@@ -11,8 +11,9 @@ public class FlightData {
     private final String destination;
     private final String firstName;
     private final String lastName;
+    private final String middleName;
 
-    public FlightData(String pnr, String airlineCode, String flightNum, String date, String flightTime, String arrivalTime, String departure, String destination, String firstName, String lastName) {
+    public FlightData(String pnr, String airlineCode, String flightNum, String date, String flightTime, String arrivalTime, String departure, String destination, String firstName, String lastName, String middleName) {
         this.pnr = pnr;
         this.airlineCode = airlineCode;
         this.flightNum = flightNum;
@@ -23,6 +24,7 @@ public class FlightData {
         this.destination = destination;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.middleName = middleName;
     }
 
     public String getPnr() {
@@ -63,5 +65,9 @@ public class FlightData {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
     }
 }

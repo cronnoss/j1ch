@@ -25,6 +25,7 @@ public class PassengerHelper extends HelperBase {
 
         type(By.name("first_name"), passengerData.getFirstName());
         type(By.name("last_name"), passengerData.getLastName());
+        type(By.name("middle_name"), passengerData.getMiddleName());
         type(By.name("birth_date"), passengerData.getBirthDate());
         type(By.name("citizenship_id"), passengerData.getCitizenshipId());
         downEnter(By.name("citizenship_id"));

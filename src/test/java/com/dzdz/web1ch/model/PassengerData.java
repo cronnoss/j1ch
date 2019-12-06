@@ -3,6 +3,7 @@ package com.dzdz.web1ch.model;
 public class PassengerData {
     private final String firstName;
     private final String lastName;
+    private final String middleName;
     private final String birthDate;
     private final String citizenshipId;
     private final String residenceId;
@@ -12,9 +13,10 @@ public class PassengerData {
     private final String passportExpiryDate;
 
 
-    public PassengerData(String firstName, String lastName, String birthDate, String citizenshipId, String residenceId, String passportNum, String passportIssueCountryId, String passportIssueDate, String passportExpiryDate) {
+    public PassengerData(String firstName, String lastName, String middleName, String birthDate, String citizenshipId, String residenceId, String passportNum, String passportIssueCountryId, String passportIssueDate, String passportExpiryDate) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.middleName = middleName;
         this.birthDate = birthDate;
         this.citizenshipId = citizenshipId;
         this.residenceId = residenceId;
@@ -30,6 +32,10 @@ public class PassengerData {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
     }
 
     public String getBirthDate() {

@@ -70,6 +70,7 @@ public class FlightHelper extends HelperBase {
             Thread.sleep(1000);
             type(By.name("first_name"), flightData.getFirstName());
             type(By.name("last_name"), flightData.getLastName());
+            type(By.name("last_name"), flightData.getMiddleName());
         } catch (NoSuchElementException e) {
             System.out.println("NoSuchElementException for add new passenger");
             try {
@@ -77,6 +78,7 @@ public class FlightHelper extends HelperBase {
                 Thread.sleep(1000);
                 type(By.name("first_name"), flightData.getFirstName());
                 type(By.name("last_name"), flightData.getLastName());
+                type(By.name("last_name"), flightData.getMiddleName());
             } catch (NoSuchElementException e1) {
                 System.out.println("NoSuchElementException for Change passenger");
             }

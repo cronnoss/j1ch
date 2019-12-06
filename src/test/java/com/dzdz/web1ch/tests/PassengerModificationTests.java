@@ -11,7 +11,7 @@ public class PassengerModificationTests extends TestJUnitTestBase {
     public void testPassengerModification() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoPassengersPage();
         app.getPassengerHelper().openPassengerForEditing();
-        app.getPassengerHelper().fillPassengerForm( new PassengerData("Elon", "Musk ","19710628", "Canada", "Canada", "CA056783","Canada","20180101","20280101"));
+        app.getPassengerHelper().fillPassengerForm( new PassengerData("Elon", "Musk ","Evon","19710628", "Canada", "Canada", "CA056783","Canada","20180101","20280101"));
         app.getPassengerHelper().submitSavePassenger();
     }
 }
