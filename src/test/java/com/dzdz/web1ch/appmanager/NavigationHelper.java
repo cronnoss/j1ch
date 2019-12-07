@@ -11,11 +11,21 @@ public class NavigationHelper extends HelperBase {
 
     public void gotoHome() throws InterruptedException {
         Thread.sleep(2000);
-        click(By.xpath("(//span[@class='menu-label'])[1]"));
+        if (isElementPresent(By.xpath("//menu[@class='menu-top hidden-xs']//li[@class='active']//a[contains(text(),'Upcoming')]"))
+                && driver.findElement(By.xpath("//menu[@class='menu-top hidden-xs']//li[@class='active']//a[contains(text(),'Upcoming')]")).getText().equals("Upcoming")
+                && isElementPresent(By.xpath("(//span[@class='menu-label'])[1]"))) {
+            return;
+        } else {
+            click(By.xpath("(//span[@class='menu-label'])[1]"));
+        }
     }
 
     public void gotoPassengersPage() throws InterruptedException {
         Thread.sleep(2000);
-        click(By.xpath("(//span[@class='menu-label'])[2]"));
+        if (isElementPresent(By.xpath("//div[@class='text-secondry text-center']//b[contains(text(),'Personal 1Checkin email address')]"))) {
+            return;
+        } else {
+            click(By.xpath("(//span[@class='menu-label'])[2]"));
+        }
     }
 }
