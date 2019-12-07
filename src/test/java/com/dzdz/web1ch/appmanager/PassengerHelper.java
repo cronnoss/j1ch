@@ -88,4 +88,8 @@ public class PassengerHelper extends HelperBase {
     public boolean isThereAPassenger() {
         return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header > .btn-clear svg"));
     }
+
+    public int getPassengerCount() {
+        return driver.findElements(By.xpath("//div[@data-class='passenger']")).size();
+    }
 }

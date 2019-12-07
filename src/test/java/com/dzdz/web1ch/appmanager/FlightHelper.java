@@ -114,4 +114,8 @@ public class FlightHelper extends HelperBase {
     public boolean isThereAFlight() {
         return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg"));
     }
+
+    public int getFlightCount() {
+        return driver.findElements(By.xpath("//div[@data-class='thread']")).size();
+    }
 }
