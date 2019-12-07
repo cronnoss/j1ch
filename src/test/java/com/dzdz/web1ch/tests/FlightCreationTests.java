@@ -12,9 +12,7 @@ public class FlightCreationTests extends TestJUnitTestBase {
     @Test
     public void testFlightCreation() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoHome();
-        app.getFlightHelper().initFlightCreation();
-        app.getFlightHelper().fillFlightForm(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
-        app.getFlightHelper().submitSaveFlight();
+        app.getFlightHelper().createFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
         Assert.assertNotNull(app.driver.findElement(By.xpath("//div[@data-class='thread']")));
     }
 }

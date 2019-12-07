@@ -104,4 +104,14 @@ public class FlightHelper extends HelperBase {
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
     }
+
+    public void createFlight(FlightData flight, boolean creation) throws InterruptedException, AWTException {
+        initFlightCreation();
+        fillFlightForm(flight, creation);
+        submitSaveFlight();
+    }
+
+    public boolean isThereAFlight() {
+        return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg"));
+    }
 }
