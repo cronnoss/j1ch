@@ -21,8 +21,7 @@ public class PassengerHelper extends HelperBase {
 
     public void fillPassengerForm(PassengerData passengerData) throws InterruptedException, AWTException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        driver.findElement(By.cssSelector(".card:nth-child(1) > .card-wrap .btn-group > .btn:nth-child(1)")).click();
-
+        click(By.cssSelector(".card:nth-child(1) > .card-wrap .btn-group > .btn:nth-child(1)"));
         type(By.name("first_name"), passengerData.getFirstName());
         type(By.name("last_name"), passengerData.getLastName());
         type(By.name("middle_name"), passengerData.getMiddleName());
