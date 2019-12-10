@@ -1,12 +1,12 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.PassengerData;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.awt.*;
 
-public class PassengerModificationTests extends TestJUnitTestBase {
+public class PassengerModificationTests extends TestNGTestBase {
 
     @Test
     public void testPassengerModification() throws InterruptedException, AWTException {

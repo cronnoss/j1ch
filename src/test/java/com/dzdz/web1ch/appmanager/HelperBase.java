@@ -1,9 +1,6 @@
 package com.dzdz.web1ch.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -48,5 +45,11 @@ public class HelperBase {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+
+    public static void refreshBrowserByJs(WebDriver driver) {
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("history.go(0)");
     }
 }

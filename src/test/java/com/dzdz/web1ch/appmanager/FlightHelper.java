@@ -1,8 +1,8 @@
 package com.dzdz.web1ch.appmanager;
 
 import com.dzdz.web1ch.model.FlightData;
-import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.testng.Assert;
 
 import java.awt.*;
 

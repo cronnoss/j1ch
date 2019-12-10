@@ -3,8 +3,8 @@ package com.dzdz.web1ch.tests;
 import com.dzdz.web1ch.SuiteConfiguration;
 import com.dzdz.web1ch.appmanager.ApplicationManager;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.After;
-import org.junit.Before;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,10 +12,10 @@ import java.net.URL;
 /**
  * Base class for TestJUnit-based test classes
  */
-public class TestJUnitTestBase {
-    protected final ApplicationManager app = new ApplicationManager();
+public class TestNGTestBase {
+    protected static final ApplicationManager app = new ApplicationManager();
 
-    @Before
+    @BeforeTest
     public void initTestSuite() throws IOException, InterruptedException {
         SuiteConfiguration config = new SuiteConfiguration();
         ApplicationManager.baseUrl = config.getProperty("site.url");
@@ -26,13 +26,9 @@ public class TestJUnitTestBase {
         app.init();
     }
 
-    @After //(alwaysRun = true)
+    @AfterTest
     public void tearDown() {
         app.stop();
-    }
-
-    public ApplicationManager getApp() {
-        return app;
     }
 
     public static String randomeString() {

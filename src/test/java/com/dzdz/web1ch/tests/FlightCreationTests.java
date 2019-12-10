@@ -1,12 +1,12 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.FlightData;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.awt.*;
 
-public class FlightCreationTests extends TestJUnitTestBase {
+public class FlightCreationTests extends TestNGTestBase {
 
     @Test
     public void testFlightCreation() throws InterruptedException, AWTException {

@@ -10,6 +10,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoHome() throws InterruptedException {
+        refreshBrowserByJs(driver);
         Thread.sleep(2000);
         if (isElementPresent(By.xpath("//menu[@class='menu-top hidden-xs']//li[@class='active']//a[contains(text(),'Upcoming')]"))
                 && driver.findElement(By.xpath("//menu[@class='menu-top hidden-xs']//li[@class='active']//a[contains(text(),'Upcoming')]")).getText().equals("Upcoming")
@@ -21,6 +22,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoPassengersPage() throws InterruptedException {
+        refreshBrowserByJs(driver);
         Thread.sleep(2000);
         if (isElementPresent(By.xpath("//div[@class='text-secondry text-center']//b[contains(text(),'Personal 1Checkin email address')]"))) {
             return;
