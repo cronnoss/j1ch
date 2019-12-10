@@ -20,6 +20,6 @@ public class PassengerModificationTests extends TestNGTestBase {
         app.getPassengerHelper().submitSavePassenger();
         app.getNavigationHelper().gotoPassengersPage();
         int after = app.getPassengerHelper().getPassengerCount();
-        Assert.assertEquals(after, before);
+        Assert.assertEquals(after, before - 1);
     }
 }
