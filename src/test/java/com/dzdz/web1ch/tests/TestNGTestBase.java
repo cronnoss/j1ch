@@ -3,8 +3,8 @@ package com.dzdz.web1ch.tests;
 import com.dzdz.web1ch.SuiteConfiguration;
 import com.dzdz.web1ch.appmanager.ApplicationManager;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +15,7 @@ import java.net.URL;
 public class TestNGTestBase {
     protected static final ApplicationManager app = new ApplicationManager();
 
-    @BeforeTest
+    @BeforeSuite
     public void initTestSuite() throws IOException, InterruptedException {
         SuiteConfiguration config = new SuiteConfiguration();
         ApplicationManager.baseUrl = config.getProperty("site.url");
@@ -26,7 +26,7 @@ public class TestNGTestBase {
         app.init();
     }
 
-    @AfterTest
+    @AfterSuite
     public void tearDown() {
         app.stop();
     }
