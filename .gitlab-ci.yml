@@ -1,7 +1,7 @@
-image: alpine
+image: maven
 
 test:
   script:
-    - cat .gitignore
+    - mvn clean test
   only:
     - pushes
