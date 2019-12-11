@@ -1,0 +1,5 @@
+test:
+  script:
+    - cat .gitignore
+  only:
+    - pushes
