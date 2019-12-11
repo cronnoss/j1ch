@@ -1,3 +1,5 @@
+image: alpine
+
 test:
   script:
     - cat .gitignore
