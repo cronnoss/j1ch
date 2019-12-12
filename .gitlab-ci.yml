@@ -1,8 +1,7 @@
-image: markhobson/maven-chrome
+image: elgalu/selenium
 
 test:
   script:
-    - --disable-dev-shm-usage
     - mvn clean install
   only:
     - pushes
