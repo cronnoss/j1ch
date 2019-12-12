@@ -1,4 +1,4 @@
-image: maven, selenium/standalone-chrome:latest
+image: markhobson/maven-chrome
 
 test:
   script:
