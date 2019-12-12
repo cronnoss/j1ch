@@ -1,9 +1,6 @@
-image: selenium/standalone-chrome
+image: markhobson/maven-chrome
 
-test1:
-  script:
-    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59-xenon
-test2:
+test:
   script:
     - mvn clean test
   only:
