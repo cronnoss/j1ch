@@ -8,7 +8,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-    public static URL gridHubUrl = null;
+    public static URL gridHubUrl;
     public static String baseUrl;
     public static Capabilities capabilities;
 
