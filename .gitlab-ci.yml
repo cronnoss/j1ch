@@ -2,6 +2,7 @@ image: markhobson/maven-chrome
 
 test:
   script:
-    - mvn clean test
+    - --disable-dev-shm-usage
+    - mvn clean install
   only:
     - pushes
