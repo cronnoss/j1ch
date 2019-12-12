@@ -1,9 +1,7 @@
 package com.dzdz.web1ch.appmanager;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 import java.net.URL;
@@ -21,9 +19,7 @@ public class ApplicationManager {
     private PassengerHelper passengerHelper;
 
     public void init() throws InterruptedException {
-        //driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

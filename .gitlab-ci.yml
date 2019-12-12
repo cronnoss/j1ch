@@ -2,6 +2,7 @@ image: maven
 
 test:
   script:
+    - docker pull selenium/standalone-chrome:latest
     - mvn clean test
   only:
     - pushes
