@@ -2,8 +2,11 @@ package com.dzdz.web1ch.appmanager;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.stqa.selenium.factory.WebDriverPool;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -12,14 +15,19 @@ public class ApplicationManager {
     public static String baseUrl;
     public static Capabilities capabilities;
 
-    public WebDriver driver;
+    //public WebDriver driver;
+    public RemoteWebDriver driver;
     private SessionHelper sessionHelper;
     private FlightHelper flightHelper;
     private NavigationHelper navigationHelper;
     private PassengerHelper passengerHelper;
 
-    public void init() throws InterruptedException {
-        driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
+    public void init() throws InterruptedException, MalformedURLException {
+        //driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
+
+        DesiredCapabilities dc = DesiredCapabilities.chrome();
+        URL url = new URL("http://localhost:4444/wd/hub/");
+        driver = new RemoteWebDriver(url, dc);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

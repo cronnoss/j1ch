@@ -1,7 +1,10 @@
-image: maven
+image: selenium/standalone-chrome
 
-test:
+test1:
   script:
-    - mvn -P chrome,localhost,grid test
+    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59-xenon
+test2:
+  script:
+    - mvn clean test
   only:
     - pushes
