@@ -1,7 +1,7 @@
-image: elgalu/selenium
+image: maven
 
 test:
   script:
-    - mvn clean install
+    - mvn clean test
   only:
     - pushes
