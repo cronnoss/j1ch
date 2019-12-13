@@ -15,7 +15,7 @@ test:
     - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
     - echo "Testing pull maven"
     - docker pull maven
-    - docker run maven
+    - docker run -it mvn clean install
     - mvn clean test
   only:
     - pushes
