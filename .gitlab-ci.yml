@@ -2,6 +2,8 @@ image: maven
 
 test:
   script:
+    - cd Drivers/lin
+    - chmod +x chromedriver
     - mvn test
   only:
     - pushes
