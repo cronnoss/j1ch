@@ -7,7 +7,7 @@ test:
   script:
     - docker pull selenium/standalone-chrome:latest
     - docker pull maven
-    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59-xenon
     - docker run --tty --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven mvn clean install
   only:
     - pushes
