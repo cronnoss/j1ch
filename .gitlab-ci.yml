@@ -1,6 +1,6 @@
 image: maven
 services:
-  - maven:dind
+  - docker:dind
 
 stages:
   - test
