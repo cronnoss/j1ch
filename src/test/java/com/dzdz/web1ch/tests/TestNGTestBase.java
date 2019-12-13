@@ -26,7 +26,7 @@ public class TestNGTestBase {
         app.init();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
     }

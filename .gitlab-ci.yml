@@ -1,7 +1,36 @@
-image: maven
+image: docker:19.03.1
+services:
+  - docker:19.03.1-dind
 
-test:
+stages:
+  - test
+  - cleanup
+
+test1:
+  stage: test
   script:
-    - mvn clean test
+    - echo "Testing pull maven"
+    - docker pull maven
+    - echo "Testing run maven"
+    - docker run maven
   only:
     - pushes
+
+test2:
+  stage: test
+  script:
+    - echo "Testing pull selenium/standalone-chrome"
+    - docker pull selenium/standalone-chrome:latest
+    - echo "Testing run selenium/standalone-chrome"
+    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+
+test3:
+  stage: test
+  script:
+    - mvn clean test
+
+cleanup:
+  stage: cleanup
+  when: always
+  script:
+    - echo "Stop & remove containers"
