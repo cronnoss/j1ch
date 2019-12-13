@@ -27,7 +27,7 @@ public class ApplicationManager {
         /*driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);*/
 
         DesiredCapabilities dc = DesiredCapabilities.chrome();
-        URL url = new URL("http://localhost/127.0.0.1:4444/");
+        URL url = new URL("http://localhost/127.0.0.1:80/");
         driver = new RemoteWebDriver(url, dc);
 
         /*System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
