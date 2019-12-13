@@ -3,33 +3,21 @@ services:
   - docker:19.03.1-dind
 
 stages:
-  - spawn
-  - build
   - test
   - cleanup
 
-test1:
-  stage: spawn
+test:
+  stage: test
   script:
     - echo "Testing pull selenium/standalone-chrome"
     - docker pull selenium/standalone-chrome:latest
     - echo "Testing run selenium/standalone-chrome"
     - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
-  only:
-    - pushes
-
-test2:
-  stage: build
-  script:
     - echo "Testing pull maven"
     - docker pull maven
-    #- echo "Testing run maven"
-    #- docker run maven
-
-test3:
-  stage: test
-  script:
     - mvn clean test
+  only:
+    - pushes
 
 cleanup:
   stage: cleanup
