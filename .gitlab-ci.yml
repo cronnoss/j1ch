@@ -1,7 +1,13 @@
-image: maven
+image: docker:git
+
+services:
+  - docker:dind
 
 test:
   script:
-    - mvn clean test
+    - docker pull selenium/standalone-chrome:latest
+    - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
+    - docker pull maven
+    - docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
   only:
     - pushes
