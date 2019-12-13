@@ -15,7 +15,7 @@ test:
     - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
     - echo "Testing pull maven"
     - docker pull maven
-    - docker build . --tag my_local_maven_j1ch:3.5.2-jdk-8
+    - docker build --tag my_local_maven_j1ch:3.5.2-jdk-8
     - docker run mvn clean install
     - mvn clean test
   only:
