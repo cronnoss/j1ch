@@ -15,7 +15,7 @@ test:
     - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:latest
     - echo "Testing pull maven"
     - docker pull maven
-    - docker run -it --rm --name j1ch -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+    - docker run clean install
   only:
     - pushes
 
