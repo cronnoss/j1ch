@@ -1,6 +1,7 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.FlightData;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,13 @@ public class FlightDeletionTests extends TestNGTestBase {
         }
     }
 
-    @Test
+    @Test(description = "Verify deletion flight card on Flights Page")
+    @Description("Verify deletion flight card on Flights Page...")
+    @Epic("EP001")
+    @Feature("Feature1: Flight")
+    @Story("Story: Flight deletion")
+    @Step("Verify deletion flight")
+    @Severity(SeverityLevel.NORMAL)
     public void testFlightDeletion() throws InterruptedException {
         int before = app.getFlightHelper().getFlightCount();
         app.getFlightHelper().openFlightForEditing();

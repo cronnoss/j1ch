@@ -1,6 +1,7 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.PassengerData;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,13 @@ import java.awt.*;
 
 public class PassengerModificationTests extends TestNGTestBase {
 
-    @Test
+    @Test(description = "Verify modification Passenger card on Passengers Page")
+    @Description("Verify modification Passenger card on Passengers Page...")
+    @Epic("EP001")
+    @Feature("Feature2: Passenger")
+    @Story("Story: Passenger modification")
+    @Step("Verify modification Passenger")
+    @Severity(SeverityLevel.TRIVIAL)
     public void testPassengerModification() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoPassengersPage();
         int before = app.getPassengerHelper().getPassengerCount();

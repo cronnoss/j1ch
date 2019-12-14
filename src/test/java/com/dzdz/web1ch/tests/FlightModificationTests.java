@@ -1,8 +1,8 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.FlightData;
+import io.qameta.allure.*;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,7 +18,13 @@ public class FlightModificationTests extends TestNGTestBase {
         }
     }
 
-    @Test
+    @Test(description = "Verify modification flight card on Flights Page")
+    @Description("Verify modification flight card on Flights Page...")
+    @Epic("EP001")
+    @Feature("Feature1: Flight")
+    @Story("Story: Flight modification")
+    @Step("Verify modification flight")
+    @Severity(SeverityLevel.TRIVIAL)
     public void testFlightModification() throws InterruptedException, AWTException {
         int before = app.getFlightHelper().getFlightCount();
         app.getFlightHelper().modifyFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null), false);

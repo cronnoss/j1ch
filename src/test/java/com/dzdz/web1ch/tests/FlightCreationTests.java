@@ -1,6 +1,7 @@
 package com.dzdz.web1ch.tests;
 
 import com.dzdz.web1ch.model.FlightData;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,13 @@ import java.awt.*;
 
 public class FlightCreationTests extends TestNGTestBase {
 
-    @Test
+    @Test(description = "Verify creation flight card on Flights Page")
+    @Description("Verify creation flight card on Flights Page...")
+    @Epic("EP001")
+    @Feature("Feature1: Flight")
+    @Story("Story: Flight creation")
+    @Step("Verify creation flight")
+    @Severity(SeverityLevel.MINOR)
     public void testFlightCreation() throws InterruptedException, AWTException {
         app.getNavigationHelper().gotoHome();
         int before = app.getFlightHelper().getFlightCount();

@@ -1,7 +1,7 @@
-image: maven
+#image: maven
 
-test:
-  script:
-    - mvn clean test
-  only:
-    - pushes
+#test:
+  #script:
+    #- mvn clean test
+  #only:
+    #- pushes
