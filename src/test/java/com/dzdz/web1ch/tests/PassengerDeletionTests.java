@@ -26,6 +26,6 @@ public class PassengerDeletionTests extends TestNGTestBase {
         app.getPassengerHelper().deleteEditablePassenger();
         app.getNavigationHelper().gotoPassengersPage();
         int after = app.getPassengerHelper().getPassengerCount();
-        Assert.assertEquals(after, before - 1);
+        Assert.assertEquals(after, before);
     }
 }

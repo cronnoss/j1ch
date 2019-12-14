@@ -1,6 +1,8 @@
 package com.dzdz.web1ch.appmanager;
 
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.selenium.factory.WebDriverPool;
 
@@ -44,5 +46,9 @@ public class ApplicationManager {
 
     public PassengerHelper getPassengerHelper() {
         return passengerHelper;
+    }
+
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

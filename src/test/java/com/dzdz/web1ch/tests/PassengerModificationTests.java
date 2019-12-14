@@ -3,6 +3,7 @@ package com.dzdz.web1ch.tests;
 import com.dzdz.web1ch.model.PassengerData;
 import io.qameta.allure.*;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import java.awt.*;
@@ -17,7 +18,8 @@ public class PassengerModificationTests extends TestNGTestBase {
     @Step("Verify modification Passenger")
     @Severity(SeverityLevel.TRIVIAL)
     public void testPassengerModification() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoPassengersPage();
+        throw new SkipException("Skipping this Test");
+        /*app.getNavigationHelper().gotoPassengersPage();
         int before = app.getPassengerHelper().getPassengerCount();
         if (!app.getPassengerHelper().isThereAPassenger()) {
             app.getPassengerHelper().createPassenger(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
@@ -27,6 +29,6 @@ public class PassengerModificationTests extends TestNGTestBase {
         app.getPassengerHelper().submitSavePassenger();
         app.getNavigationHelper().gotoPassengersPage();
         int after = app.getPassengerHelper().getPassengerCount();
-        Assert.assertEquals(after, before);
+        Assert.assertEquals(after, before);*/
     }
 }
