@@ -3,19 +3,24 @@ package com.dzdz.web1ch.tests;
 import com.dzdz.web1ch.SuiteConfiguration;
 import com.dzdz.web1ch.appmanager.ApplicationManager;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.Arrays;
 
 /**
  * Base class for TestJUnit-based test classes
  */
 @Listeners(MyTestListener.class)
 public class TestNGTestBase {
+
+    Logger logger = LoggerFactory.getLogger(TestNGTestBase.class);
+
     protected static final ApplicationManager app = new ApplicationManager();
 
     @BeforeSuite
@@ -33,6 +38,16 @@ public class TestNGTestBase {
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
+    }
+
+    @BeforeMethod
+    public void logTestStart(Method m, Object[] p) {
+        logger.info("Start test " + m.getName() + " with parameters " + Arrays.asList(p));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void logTestStop(Method m) {
+        logger.info("Stop test " + m.getName());
     }
 
     public static String randomeString() {
