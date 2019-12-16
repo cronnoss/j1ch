@@ -14,7 +14,9 @@ public class PassengerDeletionTests extends TestNGTestBase {
     public void ensurePreconditions() throws InterruptedException, AWTException {
         app.goTo().PassengersPage();
         if (!app.passenger().isThereAPassenger()) {
-            app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
+            app.passenger().create(new PassengerData().withFirstName("Daniel").withLastName("Zagar").withBirthDate("19800505")
+                    .withCitizenshipId("Slovenia").withResidenceId("Slovenia").withPassportNum("PB1258535")
+                    .withPassportIssueCountryId("Slovenia").withPassportIssueDate("20140216").withPassportExpiryDate("20240215"));
         }
     }
 
@@ -25,7 +27,7 @@ public class PassengerDeletionTests extends TestNGTestBase {
     @Story("Story: Passenger deletion")
     @Step("Verify deletion Passenger")
     @Severity(SeverityLevel.NORMAL)
-    public void testPassengerDeletion() throws InterruptedException, AWTException {
+    public void testPassengerDeletion() throws InterruptedException {
         int before = app.passenger().count();
         app.passenger().openPassengerForEditing();
         app.passenger().deleteEditablePassenger();

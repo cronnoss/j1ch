@@ -1,30 +1,16 @@
 package com.dzdz.web1ch.model;
 
 public class PassengerData {
-    private final String firstName;
-    private final String lastName;
-    private final String middleName;
-    private final String birthDate;
-    private final String citizenshipId;
-    private final String residenceId;
-    private final String passportNum;
-    private final String passportIssueCountryId;
-    private final String passportIssueDate;
-    private final String passportExpiryDate;
-
-
-    public PassengerData(String firstName, String lastName, String middleName, String birthDate, String citizenshipId, String residenceId, String passportNum, String passportIssueCountryId, String passportIssueDate, String passportExpiryDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.birthDate = birthDate;
-        this.citizenshipId = citizenshipId;
-        this.residenceId = residenceId;
-        this.passportNum = passportNum;
-        this.passportIssueCountryId = passportIssueCountryId;
-        this.passportIssueDate = passportIssueDate;
-        this.passportExpiryDate = passportExpiryDate;
-    }
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String birthDate;
+    private String citizenshipId;
+    private String residenceId;
+    private String passportNum;
+    private String passportIssueCountryId;
+    private String passportIssueDate;
+    private String passportExpiryDate;
 
     public String getFirstName() {
         return firstName;
@@ -64,5 +50,55 @@ public class PassengerData {
 
     public String getPassportExpiryDate() {
         return passportExpiryDate;
+    }
+
+    public PassengerData withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public PassengerData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public PassengerData withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public PassengerData withBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public PassengerData withCitizenshipId(String citizenshipId) {
+        this.citizenshipId = citizenshipId;
+        return this;
+    }
+
+    public PassengerData withResidenceId(String residenceId) {
+        this.residenceId = residenceId;
+        return this;
+    }
+
+    public PassengerData withPassportNum(String passportNum) {
+        this.passportNum = passportNum;
+        return this;
+    }
+
+    public PassengerData withPassportIssueCountryId(String passportIssueCountryId) {
+        this.passportIssueCountryId = passportIssueCountryId;
+        return this;
+    }
+
+    public PassengerData withPassportIssueDate(String passportIssueDate) {
+        this.passportIssueDate = passportIssueDate;
+        return this;
+    }
+
+    public PassengerData withPassportExpiryDate(String passportExpiryDate) {
+        this.passportExpiryDate = passportExpiryDate;
+        return this;
     }
 }

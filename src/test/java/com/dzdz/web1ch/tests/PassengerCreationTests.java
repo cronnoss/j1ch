@@ -19,7 +19,9 @@ public class PassengerCreationTests extends TestNGTestBase {
     public void testPassengerCreation() throws InterruptedException, AWTException {
         app.goTo().PassengersPage();
         int before = app.passenger().count();
-        PassengerData passenger = new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215");
+        PassengerData passenger = new PassengerData().withFirstName("Daniel").withLastName("Zagar").withBirthDate("19800505")
+                .withCitizenshipId("Slovenia").withResidenceId("Slovenia").withPassportNum("PB1258535")
+                .withPassportIssueCountryId("Slovenia").withPassportIssueDate("20140216").withPassportExpiryDate("20240215");
         app.passenger().create(passenger);
         int after = app.passenger().count();
         Assert.assertEquals(after, before + 1);

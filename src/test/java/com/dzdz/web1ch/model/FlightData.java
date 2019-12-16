@@ -1,31 +1,17 @@
 package com.dzdz.web1ch.model;
 
 public class FlightData {
-    private final String pnr;
-    private final String airlineCode;
-    private final String flightNum;
-    private final String date;
-    private final String flightTime;
-    private final String arrivalTime;
-    private final String departure;
-    private final String destination;
-    private final String firstName;
-    private final String lastName;
-    private final String middleName;
-
-    public FlightData(String pnr, String airlineCode, String flightNum, String date, String flightTime, String arrivalTime, String departure, String destination, String firstName, String lastName, String middleName) {
-        this.pnr = pnr;
-        this.airlineCode = airlineCode;
-        this.flightNum = flightNum;
-        this.date = date;
-        this.flightTime = flightTime;
-        this.arrivalTime = arrivalTime;
-        this.departure = departure;
-        this.destination = destination;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-    }
+    private String pnr;
+    private String airlineCode;
+    private String flightNum;
+    private String date;
+    private String flightTime;
+    private String arrivalTime;
+    private String departure;
+    private String destination;
+    private String firstName;
+    private String lastName;
+    private String middleName;
 
     public String getPnr() {
         return pnr;
@@ -69,5 +55,60 @@ public class FlightData {
 
     public String getMiddleName() {
         return middleName;
+    }
+
+    public FlightData withPnr(String pnr) {
+        this.pnr = pnr;
+        return this;
+    }
+
+    public FlightData withAirlineCode(String airlineCode) {
+        this.airlineCode = airlineCode;
+        return this;
+    }
+
+    public FlightData withFlightNum(String flightNum) {
+        this.flightNum = flightNum;
+        return this;
+    }
+
+    public FlightData withDate(String date) {
+        this.date = date;
+        return this;
+    }
+
+    public FlightData withFlightTime(String flightTime) {
+        this.flightTime = flightTime;
+        return this;
+    }
+
+    public FlightData withArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+        return this;
+    }
+
+    public FlightData withDeparture(String departure) {
+        this.departure = departure;
+        return this;
+    }
+
+    public FlightData withDestination(String destination) {
+        this.destination = destination;
+        return this;
+    }
+
+    public FlightData withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public FlightData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public FlightData withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
     }
 }

@@ -14,7 +14,9 @@ public class PassengerModificationTests extends TestNGTestBase {
     public void ensurePreconditions() throws InterruptedException, AWTException {
         app.goTo().PassengersPage();
         if (!app.passenger().isThereAPassenger()) {
-            app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
+            app.passenger().create(new PassengerData().withFirstName("Daniel").withLastName("Zagar").withBirthDate("19800505")
+                    .withCitizenshipId("Slovenia").withResidenceId("Slovenia").withPassportNum("PB1258535")
+                    .withPassportIssueCountryId("Slovenia").withPassportIssueDate("20140216").withPassportExpiryDate("20240215"));
         }
     }
 
@@ -27,7 +29,9 @@ public class PassengerModificationTests extends TestNGTestBase {
     @Severity(SeverityLevel.TRIVIAL)
     public void testPassengerModification() throws InterruptedException, AWTException {
         int before = app.passenger().count();
-        PassengerData passenger = new PassengerData("Elon", "Musk ", null, "19710628", "Canada", "Canada", "CA056783", "Canada", "20180101", "20280101");
+        PassengerData passenger = new PassengerData().withFirstName("Elon").withLastName("Musk").withBirthDate("19710628")
+                .withCitizenshipId("Canada").withResidenceId("Canada").withPassportNum("CA056783")
+                .withPassportIssueCountryId("Canada").withPassportIssueDate("20180101").withPassportExpiryDate("20280101");
         app.passenger().modify(passenger);
         app.goTo().PassengersPage();
         int after = app.passenger().count();

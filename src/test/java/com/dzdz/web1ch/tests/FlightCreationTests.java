@@ -19,7 +19,9 @@ public class FlightCreationTests extends TestNGTestBase {
     public void testFlightCreation() throws InterruptedException, AWTException {
         app.goTo().homePage();
         int before = app.flight().count();
-        FlightData flight = new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null);
+        FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("LH").withFlightNum(randomeNum())
+                .withDate("20200331").withFlightTime("1700").withArrivalTime("1800")
+                .withDeparture("TXL").withDestination("JFK").withFirstName("Greta").withLastName("Garbo");
         app.flight().create(flight, true);
         int after = app.flight().count();
         Assert.assertEquals(after, before + 1);

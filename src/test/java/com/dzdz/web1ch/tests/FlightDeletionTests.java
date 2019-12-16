@@ -14,7 +14,10 @@ public class FlightDeletionTests extends TestNGTestBase {
     public void ensurePreconditions() throws InterruptedException, AWTException {
         app.goTo().homePage();
         if (!app.flight().isThereAFlight()) {
-            app.flight().create(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
+            FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("LH").withFlightNum(randomeNum())
+                    .withDate("20200331").withFlightTime("1700").withArrivalTime("1800")
+                    .withDeparture("TXL").withDestination("JFK").withFirstName("Greta").withLastName("Garbo");
+            app.flight().create(flight, true);
         }
     }
 
