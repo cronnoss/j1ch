@@ -27,7 +27,8 @@ public class FlightModificationTests extends TestNGTestBase {
     @Severity(SeverityLevel.TRIVIAL)
     public void testFlightModification() throws InterruptedException, AWTException {
         int before = app.flight().count();
-        app.flight().modify(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null), false);
+        FlightData flight = new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null);
+        app.flight().modify(flight, false);
         int after = app.flight().count();
         Assert.assertEquals(after, before);
     }

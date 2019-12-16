@@ -84,6 +84,12 @@ public class PassengerHelper extends HelperBase {
         submitSavePassenger();
     }
 
+    public void modify(PassengerData passenger) throws InterruptedException, AWTException {
+        openPassengerForEditing();
+        fillPassengerForm(passenger);
+        submitSavePassenger();
+    }
+
     public boolean isThereAPassenger() {
         return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header > .btn-clear svg"));
     }

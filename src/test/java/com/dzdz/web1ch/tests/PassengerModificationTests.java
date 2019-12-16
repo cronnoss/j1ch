@@ -27,9 +27,8 @@ public class PassengerModificationTests extends TestNGTestBase {
     @Severity(SeverityLevel.TRIVIAL)
     public void testPassengerModification() throws InterruptedException, AWTException {
         int before = app.passenger().count();
-        app.passenger().openPassengerForEditing();
-        app.passenger().fillPassengerForm(new PassengerData("Elon", "Musk ", null, "19710628", "Canada", "Canada", "CA056783", "Canada", "20180101", "20280101"));
-        app.passenger().submitSavePassenger();
+        PassengerData passenger = new PassengerData("Elon", "Musk ", null, "19710628", "Canada", "Canada", "CA056783", "Canada", "20180101", "20280101");
+        app.passenger().modify(passenger);
         app.goTo().PassengersPage();
         int after = app.passenger().count();
         Assert.assertEquals(after, before);
