@@ -3,11 +3,20 @@ package com.dzdz.web1ch.tests;
 import com.dzdz.web1ch.model.PassengerData;
 import io.qameta.allure.*;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.awt.*;
 
 public class PassengerDeletionTests extends TestNGTestBase {
+
+    @BeforeMethod
+    public void ensurePreconditions() throws InterruptedException, AWTException {
+        app.goTo().PassengersPage();
+        if (!app.passenger().isThereAPassenger()) {
+            app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
+        }
+    }
 
     @Test(description = "Verify deletion Passenger card on Passengers Page")
     @Description("Verify deletion Passenger card on Passengers Page...")
@@ -17,11 +26,7 @@ public class PassengerDeletionTests extends TestNGTestBase {
     @Step("Verify deletion Passenger")
     @Severity(SeverityLevel.NORMAL)
     public void testPassengerDeletion() throws InterruptedException, AWTException {
-        app.goTo().PassengersPage();
         int before = app.passenger().count();
-        if (!app.passenger().isThereAPassenger()) {
-            app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
-        }
         app.passenger().openPassengerForEditing();
         app.passenger().deleteEditablePassenger();
         app.goTo().PassengersPage();
