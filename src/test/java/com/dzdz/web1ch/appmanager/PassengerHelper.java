@@ -78,7 +78,7 @@ public class PassengerHelper extends HelperBase {
         Thread.sleep(1000);
     }
 
-    public void createPassenger(PassengerData passenger) throws InterruptedException, AWTException {
+    public void create(PassengerData passenger) throws InterruptedException, AWTException {
         initPassengerCreation();
         fillPassengerForm(passenger);
         submitSavePassenger();
@@ -88,7 +88,7 @@ public class PassengerHelper extends HelperBase {
         return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header > .btn-clear svg"));
     }
 
-    public int getPassengerCount() {
+    public int count() {
         return driver.findElements(By.xpath("//div[@data-class='passenger']")).size();
     }
 }

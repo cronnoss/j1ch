@@ -12,9 +12,9 @@ public class FlightModificationTests extends TestNGTestBase {
 
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoHome();
-        if (!app.getFlightHelper().isThereAFlight()) {
-            app.getFlightHelper().createFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
+        app.goTo().homePage();
+        if (!app.flight().isThereAFlight()) {
+            app.flight().create(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
         }
     }
 
@@ -26,9 +26,9 @@ public class FlightModificationTests extends TestNGTestBase {
     @Step("Verify modification flight")
     @Severity(SeverityLevel.TRIVIAL)
     public void testFlightModification() throws InterruptedException, AWTException {
-        int before = app.getFlightHelper().getFlightCount();
-        app.getFlightHelper().modifyFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null), false);
-        int after = app.getFlightHelper().getFlightCount();
+        int before = app.flight().count();
+        app.flight().modify(new FlightData(randomeString(), "LH", randomeNum(), "20200430", "2000", "2100", "TXL", "JFK", "Mark", "Zuckerberg", null), false);
+        int after = app.flight().count();
         Assert.assertEquals(after, before);
     }
 }

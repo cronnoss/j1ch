@@ -36,15 +36,15 @@ public class ApplicationManager {
         WebDriverPool.DEFAULT.dismissAll();
     }
 
-    public FlightHelper getFlightHelper() {
+    public FlightHelper flight() {
         return flightHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    public PassengerHelper getPassengerHelper() {
+    public PassengerHelper passenger() {
         return passengerHelper;
     }
 

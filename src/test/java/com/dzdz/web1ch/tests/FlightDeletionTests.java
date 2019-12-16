@@ -12,9 +12,9 @@ public class FlightDeletionTests extends TestNGTestBase {
 
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoHome();
-        if (!app.getFlightHelper().isThereAFlight()) {
-            app.getFlightHelper().createFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
+        app.goTo().homePage();
+        if (!app.flight().isThereAFlight()) {
+            app.flight().create(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
         }
     }
 
@@ -26,10 +26,10 @@ public class FlightDeletionTests extends TestNGTestBase {
     @Step("Verify deletion flight")
     @Severity(SeverityLevel.NORMAL)
     public void testFlightDeletion() throws InterruptedException {
-        int before = app.getFlightHelper().getFlightCount();
-        app.getFlightHelper().openFlightForEditing();
-        app.getFlightHelper().deleteEditableFlight();
-        int after = app.getFlightHelper().getFlightCount();
+        int before = app.flight().count();
+        app.flight().openFlightForEditing();
+        app.flight().deleteEditableFlight();
+        int after = app.flight().count();
         Assert.assertEquals(after, before - 1);
     }
 }

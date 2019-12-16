@@ -17,10 +17,10 @@ public class PassengerCreationTests extends TestNGTestBase {
     @Step("Verify creation Passenger")
     @Severity(SeverityLevel.MINOR)
     public void testPassengerCreation() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoPassengersPage();
-        int before = app.getPassengerHelper().getPassengerCount();
-        app.getPassengerHelper().createPassenger(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
-        int after = app.getPassengerHelper().getPassengerCount();
+        app.goTo().PassengersPage();
+        int before = app.passenger().count();
+        app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
+        int after = app.passenger().count();
         Assert.assertEquals(after, before + 1);
     }
 }

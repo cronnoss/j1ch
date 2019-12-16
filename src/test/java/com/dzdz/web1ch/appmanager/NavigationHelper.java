@@ -9,7 +9,7 @@ public class NavigationHelper extends HelperBase {
         super(driver);
     }
 
-    public void gotoHome() throws InterruptedException {
+    public void homePage() throws InterruptedException {
         refreshBrowserByJs(driver);
         Thread.sleep(2000);
         if (isElementPresent(By.xpath("//menu[@class='menu-top hidden-xs']//li[@class='active']//a[contains(text(),'Upcoming')]"))
@@ -21,7 +21,7 @@ public class NavigationHelper extends HelperBase {
         }
     }
 
-    public void gotoPassengersPage() throws InterruptedException {
+    public void PassengersPage() throws InterruptedException {
         refreshBrowserByJs(driver);
         Thread.sleep(2000);
         if (isElementPresent(By.xpath("//div[@class='text-secondry text-center']//b[contains(text(),'Personal 1Checkin email address')]"))) {

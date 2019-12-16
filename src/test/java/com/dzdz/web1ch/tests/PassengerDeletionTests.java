@@ -17,15 +17,15 @@ public class PassengerDeletionTests extends TestNGTestBase {
     @Step("Verify deletion Passenger")
     @Severity(SeverityLevel.NORMAL)
     public void testPassengerDeletion() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoPassengersPage();
-        int before = app.getPassengerHelper().getPassengerCount();
-        if (!app.getPassengerHelper().isThereAPassenger()) {
-            app.getPassengerHelper().createPassenger(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
+        app.goTo().PassengersPage();
+        int before = app.passenger().count();
+        if (!app.passenger().isThereAPassenger()) {
+            app.passenger().create(new PassengerData("Daniel", "Zagar", null, "19800505", "Slovenia", "Slovenia", "PB1258535", "Slovenia", "20140216", "20240215"));
         }
-        app.getPassengerHelper().openPassengerForEditing();
-        app.getPassengerHelper().deleteEditablePassenger();
-        app.getNavigationHelper().gotoPassengersPage();
-        int after = app.getPassengerHelper().getPassengerCount();
-        Assert.assertEquals(after, before);
+        app.passenger().openPassengerForEditing();
+        app.passenger().deleteEditablePassenger();
+        app.goTo().PassengersPage();
+        int after = app.passenger().count();
+        Assert.assertEquals(after, before - 1);
     }
 }

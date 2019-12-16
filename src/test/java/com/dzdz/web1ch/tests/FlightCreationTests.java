@@ -17,10 +17,10 @@ public class FlightCreationTests extends TestNGTestBase {
     @Step("Verify creation flight")
     @Severity(SeverityLevel.MINOR)
     public void testFlightCreation() throws InterruptedException, AWTException {
-        app.getNavigationHelper().gotoHome();
-        int before = app.getFlightHelper().getFlightCount();
-        app.getFlightHelper().createFlight(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
-        int after = app.getFlightHelper().getFlightCount();
+        app.goTo().homePage();
+        int before = app.flight().count();
+        app.flight().create(new FlightData(randomeString(), "LH", randomeNum(), "20200331", "1700", "1800", "TXL", "JFK", "Greta", "Garbo", null), true);
+        int after = app.flight().count();
         Assert.assertEquals(after, before + 1);
     }
 }

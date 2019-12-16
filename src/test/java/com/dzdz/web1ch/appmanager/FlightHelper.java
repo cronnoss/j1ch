@@ -105,13 +105,13 @@ public class FlightHelper extends HelperBase {
         Thread.sleep(1000);
     }
 
-    public void createFlight(FlightData flight, boolean creation) throws InterruptedException, AWTException {
+    public void create(FlightData flight, boolean creation) throws InterruptedException, AWTException {
         initFlightCreation();
         fillFlightForm(flight, creation);
         submitSaveFlight();
     }
 
-    public void modifyFlight(FlightData flight, boolean creation) throws InterruptedException, AWTException {
+    public void modify(FlightData flight, boolean creation) throws InterruptedException, AWTException {
         openFlightForEditing();
         fillFlightForm(flight, creation);
         submitSaveFlight();
@@ -122,7 +122,7 @@ public class FlightHelper extends HelperBase {
         return isElementPresent(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg"));
     }
 
-    public int getFlightCount() {
+    public int count() {
         return driver.findElements(By.xpath("//div[@data-class='thread']")).size();
     }
 }
