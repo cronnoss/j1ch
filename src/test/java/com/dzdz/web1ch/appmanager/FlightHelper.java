@@ -93,7 +93,7 @@ public class FlightHelper extends HelperBase {
     }
 
     public void openFlightForEditing() throws InterruptedException {
-        click(By.cssSelector(".card:nth-child(1) > .card-wrap > .header svg"));
+        click(By.xpath("//button[@class='btn-clear pull-right']"));
     }
 
     public void deleteEditableFlight() throws InterruptedException {
@@ -123,6 +123,6 @@ public class FlightHelper extends HelperBase {
     }
 
     public int count() {
-        return driver.findElements(By.xpath("//div[@data-class='thread']")).size();
+        return driver.findElements(By.xpath("//button[@class='btn-clear pull-right']")).size();
     }
 }

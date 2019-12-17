@@ -66,7 +66,7 @@ public class PassengerHelper extends HelperBase {
     }
 
     public void openPassengerForEditing() throws InterruptedException {
-        click(By.cssSelector(".card:nth-child(1) > .card-wrap > .header > .btn-clear svg"));
+        click(By.xpath("//button[@class='btn-clear pull-right']"));
     }
 
     public void deleteEditablePassenger() throws InterruptedException {
@@ -95,6 +95,6 @@ public class PassengerHelper extends HelperBase {
     }
 
     public int count() {
-        return driver.findElements(By.xpath("//div[@data-class='passenger']")).size();
+        return driver.findElements(By.xpath("//button[@class='btn-clear pull-right']")).size();
     }
 }
