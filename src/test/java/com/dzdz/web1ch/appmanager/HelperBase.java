@@ -18,6 +18,12 @@ public class HelperBase {
         driver.findElement(locator).sendKeys(Keys.ENTER);
     }
 
+    protected void downEnterWithIndexOfCard(By locator, int indexOfCard) throws InterruptedException {
+        Thread.sleep(2000);
+        driver.findElements(locator).get(indexOfCard).sendKeys(Keys.DOWN);
+        driver.findElements(locator).get(indexOfCard).sendKeys(Keys.ENTER);
+    }
+
     protected void type(By locator, String text) throws InterruptedException {
         click(locator);
         if (text != null) {
@@ -27,8 +33,22 @@ public class HelperBase {
         }
     }
 
+    protected void typeWithIndexOfCard(By locator, int indexOfCard, String text) throws InterruptedException {
+        clickWithIndexOfCard(locator, indexOfCard);
+        if (text != null) {
+            driver.findElements(locator).get(indexOfCard).clear();
+            Thread.sleep(1000);
+            driver.findElements(locator).get(indexOfCard).sendKeys(text);
+        }
+    }
+
     protected void click(By locator) throws InterruptedException {
         driver.findElement(locator).click();
+        Thread.sleep(3000);
+    }
+
+    protected void clickWithIndexOfCard(By locator, int indexOfCard) throws InterruptedException {
+        driver.findElements(locator).get(indexOfCard).click();
         Thread.sleep(3000);
     }
 
@@ -46,7 +66,6 @@ public class HelperBase {
             return false;
         }
     }
-
 
     public static void refreshBrowserByJs(WebDriver driver) {
         JavascriptExecutor js = ((JavascriptExecutor) driver);

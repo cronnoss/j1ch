@@ -14,10 +14,11 @@ public class FlightModificationTests extends TestNGTestBase {
     public void ensurePreconditions() throws InterruptedException, AWTException {
         app.goTo().homePage();
         if (!app.flight().isThereAFlight()) {
+            int indexOfCard = 0;
             FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("LH").withFlightNum(randomeNum())
                     .withDate("20200331").withFlightTime("1700").withArrivalTime("1800")
                     .withDeparture("TXL").withDestination("JFK").withFirstName("Greta").withLastName("Garbo");
-            app.flight().create(flight, true);
+            app.flight().create(flight, indexOfCard, true);
         }
     }
 
@@ -30,10 +31,12 @@ public class FlightModificationTests extends TestNGTestBase {
     @Severity(SeverityLevel.TRIVIAL)
     public void testFlightModification() throws InterruptedException, AWTException {
         int before = app.flight().count();
-        FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("LH").withFlightNum(randomeNum())
-                .withDate("20200430").withFlightTime("2000").withArrivalTime("2100")
-                .withDeparture("TXL").withDestination("JFK").withFirstName("Mark").withLastName("Zuckerberg");
-        app.flight().modify(flight, false);
+        int indexOfCard = before - 1;
+        FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("DL").withFlightNum(randomeNum())
+                .withDate("20200505").withFlightTime("0115").withArrivalTime("0730")
+                .withDeparture("BOS").withDestination("LAX").withFirstName("Rudolph").withLastName("Giuliani").withIndexOfCard(indexOfCard);
+        app.flight().openFlightForEditing(indexOfCard);
+        app.flight().modify(flight, indexOfCard, false);
         int after = app.flight().count();
         Assert.assertEquals(after, before);
     }

@@ -14,10 +14,11 @@ public class FlightDeletionTests extends TestNGTestBase {
     public void ensurePreconditions() throws InterruptedException, AWTException {
         app.goTo().homePage();
         if (!app.flight().isThereAFlight()) {
+            int indexOfCard = 0;
             FlightData flight = new FlightData().withPnr(randomeString()).withAirlineCode("LH").withFlightNum(randomeNum())
                     .withDate("20200331").withFlightTime("1700").withArrivalTime("1800")
                     .withDeparture("TXL").withDestination("JFK").withFirstName("Greta").withLastName("Garbo");
-            app.flight().create(flight, true);
+            app.flight().create(flight, indexOfCard, true);
         }
     }
 
@@ -30,8 +31,9 @@ public class FlightDeletionTests extends TestNGTestBase {
     @Severity(SeverityLevel.NORMAL)
     public void testFlightDeletion() throws InterruptedException {
         int before = app.flight().count();
-        app.flight().openFlightForEditing();
-        app.flight().deleteEditableFlight();
+        int indexOfCard = before - 1;
+        app.flight().openFlightForEditing(indexOfCard);
+        app.flight().deleteEditableFlight(indexOfCard);
         int after = app.flight().count();
         Assert.assertEquals(after, before - 1);
     }

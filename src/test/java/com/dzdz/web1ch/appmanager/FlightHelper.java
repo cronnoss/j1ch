@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class FlightHelper extends HelperBase {
 
+    protected JavascriptExecutor js = (JavascriptExecutor) driver;
+
     FlightHelper(WebDriver driver) {
         super(driver);
     }
@@ -22,47 +24,46 @@ public class FlightHelper extends HelperBase {
         }
     }
 
-    public void fillFlightForm(FlightData flightData, boolean creation) throws InterruptedException, AWTException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public void fillFlightForm(FlightData flightData, int indexOfCard, boolean creation) throws InterruptedException, AWTException {
 
-        WebElement bookingRef = driver.findElement(By.name("booking_ref"));
+        WebElement bookingRef = driver.findElements(By.name("booking_ref")).get(indexOfCard);
         js.executeScript("arguments[0].scrollIntoView();", bookingRef);
         js.executeScript("window.scrollBy(0,-90)");
 
-        type(By.name("booking_ref"), flightData.getPnr());
-        type(By.name("airline_code"), flightData.getAirlineCode());
-        downEnter(By.name("airline_code"));
+        typeWithIndexOfCard(By.name("booking_ref"), indexOfCard, flightData.getPnr());
+        typeWithIndexOfCard(By.name("airline_code"), indexOfCard, flightData.getAirlineCode());
+        downEnterWithIndexOfCard(By.name("airline_code"), indexOfCard);
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(1000);
 
-        type(By.name("flight_num"), flightData.getFlightNum());
-        type(By.name("flight_date"), flightData.getDate());
+        typeWithIndexOfCard(By.name("flight_num"), indexOfCard, flightData.getFlightNum());
+        typeWithIndexOfCard(By.name("flight_date"), indexOfCard, flightData.getDate());
         keyTab();
 
-        driver.findElement(By.name("flight_time")).sendKeys(Keys.CONTROL + "a");
-        driver.findElement(By.name("flight_time")).sendKeys(Keys.DELETE);
-        driver.findElement(By.name("flight_time")).sendKeys(flightData.getFlightTime());
+        driver.findElements(By.name("flight_time")).get(indexOfCard).sendKeys(Keys.CONTROL + "a");
+        driver.findElements(By.name("flight_time")).get(indexOfCard).sendKeys(Keys.DELETE);
+        driver.findElements(By.name("flight_time")).get(indexOfCard).sendKeys(flightData.getFlightTime());
 
-        driver.findElement(By.name("arrival_time")).sendKeys(Keys.CONTROL + "a");
-        driver.findElement(By.name("arrival_time")).sendKeys(Keys.DELETE);
-        driver.findElement(By.name("arrival_time")).sendKeys(flightData.getArrivalTime());
+        driver.findElements(By.name("arrival_time")).get(indexOfCard).sendKeys(Keys.CONTROL + "a");
+        driver.findElements(By.name("arrival_time")).get(indexOfCard).sendKeys(Keys.DELETE);
+        driver.findElements(By.name("arrival_time")).get(indexOfCard).sendKeys(flightData.getArrivalTime());
         keyTab();
 
         js.executeScript("window.scrollBy(0,100)");
         Thread.sleep(3000);
 
-        type(By.name("departure_code"), flightData.getDeparture());
+        typeWithIndexOfCard(By.name("departure_code"), indexOfCard, flightData.getDeparture());
         downEnter(By.name("departure_code"));
 
-        WebElement destinationCode = driver.findElement(By.name("destination_code"));
+        WebElement destinationCode = driver.findElements(By.name("destination_code")).get(indexOfCard);
         js.executeScript("arguments[0].scrollIntoView();", destinationCode);
         js.executeScript("window.scrollBy(0,-70)");
 
-        type(By.name("destination_code"), flightData.getDestination());
+        typeWithIndexOfCard(By.name("destination_code"), indexOfCard, flightData.getDestination());
         downEnter(By.name("destination_code"));
 
-        WebElement passengers = driver.findElement(By.xpath("//h3[contains(.,'Passengers')]"));
+        WebElement passengers = driver.findElements(By.xpath("//h3[contains(.,'Passengers')]")).get(indexOfCard);
         js.executeScript("arguments[0].scrollIntoView();", passengers);
         js.executeScript("window.scrollBy(0,-90)");
 
@@ -75,8 +76,13 @@ public class FlightHelper extends HelperBase {
         } else {
             Assert.assertFalse(isElementPresent(By.xpath("//button[contains(.,' Add new passenger')]")));
             try {
-                driver.findElement(By.linkText("Change")).click();
+                click(By.xpath("//div[@class='pull-right']/a[@data-bind='btn-psg-add']"));
                 Thread.sleep(1000);
+
+                WebElement passenger = driver.findElement(By.name("first_name"));
+                js.executeScript("arguments[0].scrollIntoView();", passenger);
+                js.executeScript("window.scrollBy(0,-90)");
+
                 type(By.name("first_name"), flightData.getFirstName());
                 type(By.name("last_name"), flightData.getLastName());
                 type(By.name("last_name"), flightData.getMiddleName());
@@ -87,34 +93,35 @@ public class FlightHelper extends HelperBase {
         Thread.sleep(1000);
     }
 
-    public void submitSaveFlight() throws InterruptedException {
-        click(By.xpath("//button[@type='submit']"));
-        return;
+    public void submitSaveFlight(int indexOfCard) throws InterruptedException {
+        WebElement submitButton = driver.findElements(By.xpath("//button[@type='submit']")).get(indexOfCard);
+        js.executeScript("arguments[0].scrollIntoView();", submitButton);
+        js.executeScript("window.scrollBy(0,-90)");
+
+        driver.findElements(By.xpath("//button[@type='submit']")).get(indexOfCard).click();
     }
 
-    public void openFlightForEditing() throws InterruptedException {
-        click(By.xpath("//button[@class='btn-clear pull-right']"));
+    public void openFlightForEditing(int index) {
+        driver.findElements(By.xpath("//button[@class='btn-clear pull-right']")).get(index).click();
     }
 
-    public void deleteEditableFlight() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public void deleteEditableFlight(int indexOfCard) throws InterruptedException {
         js.executeScript("window.scrollBy(0,1100)");
         Thread.sleep(2000);
-        click(By.xpath("//button[contains(.,' Delete')]"));
+        driver.findElements(By.xpath("//i[@class='icon icon-remove']")).get(indexOfCard).click();
         driver.switchTo().alert().accept();
         Thread.sleep(1000);
     }
 
-    public void create(FlightData flight, boolean creation) throws InterruptedException, AWTException {
+    public void create(FlightData flight, int indexOfCard, boolean creation) throws InterruptedException, AWTException {
         initFlightCreation();
-        fillFlightForm(flight, creation);
-        submitSaveFlight();
+        fillFlightForm(flight, indexOfCard, creation);
+        submitSaveFlight(indexOfCard);
     }
 
-    public void modify(FlightData flight, boolean creation) throws InterruptedException, AWTException {
-        openFlightForEditing();
-        fillFlightForm(flight, creation);
-        submitSaveFlight();
+    public void modify(FlightData flight, int indexOfCard, boolean creation) throws InterruptedException, AWTException {
+        fillFlightForm(flight, indexOfCard, creation);
+        submitSaveFlight(indexOfCard);
     }
 
 

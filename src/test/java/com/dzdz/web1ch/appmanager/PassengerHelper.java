@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
 
 public class PassengerHelper extends HelperBase {
 
+    protected JavascriptExecutor js = (JavascriptExecutor) driver;
+
     PassengerHelper(WebDriver driver) {
         super(driver);
     }
@@ -20,7 +22,6 @@ public class PassengerHelper extends HelperBase {
     }
 
     public void fillPassengerForm(PassengerData passengerData) throws InterruptedException, AWTException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         click(By.cssSelector(".card:nth-child(1) > .card-wrap .btn-group > .btn:nth-child(1)"));
         type(By.name("first_name"), passengerData.getFirstName());
         type(By.name("last_name"), passengerData.getLastName());
@@ -70,7 +71,6 @@ public class PassengerHelper extends HelperBase {
     }
 
     public void deleteEditablePassenger() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,400)");
         Thread.sleep(2000);
         click(By.xpath("//div[4]/div/button"));

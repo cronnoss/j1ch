@@ -12,6 +12,7 @@ public class FlightData {
     private String firstName;
     private String lastName;
     private String middleName;
+    private int indexOfCard;
 
     public String getPnr() {
         return pnr;
@@ -55,6 +56,10 @@ public class FlightData {
 
     public String getMiddleName() {
         return middleName;
+    }
+
+    public int getIndexOfCard() {
+        return indexOfCard;
     }
 
     public FlightData withPnr(String pnr) {
@@ -109,6 +114,11 @@ public class FlightData {
 
     public FlightData withMiddleName(String middleName) {
         this.middleName = middleName;
+        return this;
+    }
+
+    public FlightData withIndexOfCard(int indexOfCard) {
+        this.indexOfCard = indexOfCard;
         return this;
     }
 }
